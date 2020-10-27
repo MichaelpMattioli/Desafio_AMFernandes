@@ -7,7 +7,11 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1jTRchwwd2H2MPkGNGW75JXAF1L" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -42,9 +46,13 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="620" y="265" key="FileChooserDialogImpl" timestamp="1603826477444">
+    <state x="620" y="265" key="FileChooserDialogImpl" timestamp="1603828635025">
       <screen x="0" y="0" width="1680" height="1020" />
     </state>
-    <state x="620" y="265" key="FileChooserDialogImpl/0.0.1680.1020@0.0.1680.1020" timestamp="1603826477444" />
+    <state x="620" y="265" key="FileChooserDialogImpl/0.0.1680.1020@0.0.1680.1020" timestamp="1603828635025" />
+    <state x="431" y="130" key="new project wizard" timestamp="1603828790639">
+      <screen x="0" y="0" width="1680" height="1020" />
+    </state>
+    <state x="431" y="130" key="new project wizard/0.0.1680.1020@0.0.1680.1020" timestamp="1603828790639" />
   </component>
 </project>
