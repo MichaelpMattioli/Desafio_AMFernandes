@@ -9,7 +9,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ImobiliariaAPI {
-    public JSONArray imoveisJsonObject() throws Exception{
+    public JSONArray imoveisJsonArray() throws Exception{
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
