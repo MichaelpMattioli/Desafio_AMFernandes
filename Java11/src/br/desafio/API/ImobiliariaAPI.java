@@ -1,5 +1,6 @@
 package br.desafio.API;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URI;
@@ -8,7 +9,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ImobiliariaAPI {
-    public JSONObject imoveisJsonObject() throws Exception{
+    public JSONArray imoveisJsonObject() throws Exception{
         HttpClient client = HttpClient.newBuilder().build();
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
@@ -16,8 +17,8 @@ public class ImobiliariaAPI {
                 .build();
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
-        JSONObject jsonObject = new JSONObject(response.body());
+        JSONArray jsonArray = new JSONArray(response.body());
 
-        return jsonObject;
+        return jsonArray;
     }
 }
