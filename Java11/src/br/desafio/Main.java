@@ -1,4 +1,4 @@
-package br.maua;
+package br.desafio;
 
 public class Main {
 
