@@ -2,8 +2,10 @@ package br.desafio.filtroJSON;
 
 import br.desafio.API.ImobiliariaAPI;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class TratamentoJson {
     ImobiliariaAPI imobiliariaAPI = new ImobiliariaAPI();
@@ -19,7 +21,7 @@ public class TratamentoJson {
     }
 
 
-    public ArrayList listaCamposSemRepeticao(String campo){ // Vale resaltar que existem vários imoveis sem condominio.
+    public ArrayList arrayListCamposSemRepeticao(String campo){ // Vale resaltar que existem vários imoveis sem condominio.
 
         ArrayList listaCampos = new ArrayList();
         ArrayList listaCamposConteudo = new ArrayList();
@@ -31,6 +33,9 @@ public class TratamentoJson {
                 listaCamposConteudo.add(jsonArrayImoveis.getJSONObject(i).get(campo));
             }else{
                 for( j = 0; j < listaCamposConteudo.size(); j++){
+//                    if(jsonArrayImoveis.getJSONObject(0).getClass() == jsonArrayImoveis.getJSONObject(i).get(campo)){
+//
+//                    }
                     if(!listaCamposConteudo.contains(jsonArrayImoveis.getJSONObject(i).get(campo))){
                         listaCamposConteudo.add(jsonArrayImoveis.getJSONObject(i).get(campo));
                     }
@@ -44,6 +49,5 @@ public class TratamentoJson {
 
         return listaCampos;
     }
-
 
 }
