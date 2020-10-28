@@ -19,7 +19,7 @@ public class TratamentoJson {
     }
 
 
-    public ArrayList listaCamposSemRepeticao(String campo){
+    public ArrayList listaCamposSemRepeticao(String campo){ // Vale resaltar que existem vários imoveis sem condominio.
 
         ArrayList listaCampos = new ArrayList();
         ArrayList<String> listaCamposConteudo = new ArrayList<>();
@@ -37,6 +37,9 @@ public class TratamentoJson {
                 }
             }
         }
+
+        System.out.println(jsonArrayImoveis.length());
+        System.out.println(listaCamposConteudo.size());
 
         listaCampos.add(campo);
         listaCampos.add(listaCamposConteudo);
