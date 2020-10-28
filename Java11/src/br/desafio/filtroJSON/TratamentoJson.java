@@ -19,7 +19,7 @@ public class TratamentoJson {
     }
 
 
-    public ArrayList listaCampos(String campo){
+    public ArrayList listaCamposSemRepeticao(String campo){
 
         ArrayList listaCampos = new ArrayList();
         ArrayList<String> listaCamposConteudo = new ArrayList<>();
