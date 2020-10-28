@@ -31,11 +31,9 @@ public class ImovelDAO implements DAO<Imovel>, DAOFields {
                         result.getInt("id"),
                         result.getString("nome"),
                         result.getString("bairro"),
-                        result.getString("cep"),
                         result.getString("cidade"),
                         result.getString("fachada"),
-                        result.getString("rua"),
-                        result.getString("planta")
+                        result.getString("rua")
                 );
                 listaImoveis.add(imovel);
             }
@@ -57,11 +55,9 @@ public class ImovelDAO implements DAO<Imovel>, DAOFields {
                         result.getInt("id"),
                         result.getString("nome"),
                         result.getString("bairro"),
-                        result.getString("cep"),
                         result.getString("cidade"),
                         result.getString("fachada"),
-                        result.getString("rua"),
-                        result.getString("planta")
+                        result.getString("rua")
                 );
                 listaImoveis.add(imovel);
             }
@@ -80,11 +76,9 @@ public class ImovelDAO implements DAO<Imovel>, DAOFields {
             preparedStatement.setInt(1, imovel.getId());
             preparedStatement.setString(2, imovel.getNome());
             preparedStatement.setString(3, imovel.getBairro());
-            preparedStatement.setString(4, imovel.getCep());
-            preparedStatement.setString(5, imovel.getCidade());
-            preparedStatement.setString(6, imovel.getFachada());
-            preparedStatement.setString(7, imovel.getRua());
-            preparedStatement.setString(8, imovel.getPlanta());
+            preparedStatement.setString(4, imovel.getCidade());
+            preparedStatement.setString(5, imovel.getFachada());
+            preparedStatement.setString(6, imovel.getRua());
 
             int retorno = preparedStatement.executeUpdate();
 
@@ -112,11 +106,9 @@ public class ImovelDAO implements DAO<Imovel>, DAOFields {
             preparedStatement.setInt(1, imovel.getId());
             preparedStatement.setString(2, imovel.getNome());
             preparedStatement.setString(3, imovel.getBairro());
-            preparedStatement.setString(4, imovel.getCep());
-            preparedStatement.setString(5, imovel.getCidade());
-            preparedStatement.setString(6, imovel.getFachada());
-            preparedStatement.setString(7, imovel.getRua());
-            preparedStatement.setString(8, imovel.getPlanta());
+            preparedStatement.setString(4, imovel.getCidade());
+            preparedStatement.setString(5, imovel.getFachada());
+            preparedStatement.setString(6, imovel.getRua());
 
             int retorno = preparedStatement.executeUpdate();
 
@@ -141,12 +133,12 @@ public class ImovelDAO implements DAO<Imovel>, DAOFields {
 
     @Override
     public String getUpdateString(String table) {
-        return "UPDATE "+ table +" SET id = ?, nome = ?, bairro = ?, cep = ?, cidade = ?, fachada = ?, rua = ?, planta = ? WHERE id = ?;";
+        return "UPDATE "+ table +" SET id = ?, nome = ?, bairro = ?, cidade = ?, fachada = ?, rua = ? WHERE id = ?;";
     }
 
     @Override
     public String getInsertString(String table) {
-        return "INSERT INTO "+ table + " (id, nome, bairro, cep, cidade, fachada, rua, planta) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        return "INSERT INTO "+ table + " (id, nome, bairro, cidade, fachada, rua) VALUES (?, ?, ?, ?, ?, ?);";
     }
 
     @Override
