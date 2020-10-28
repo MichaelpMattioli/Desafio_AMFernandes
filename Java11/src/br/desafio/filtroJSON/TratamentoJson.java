@@ -4,8 +4,6 @@ import br.desafio.API.ImobiliariaAPI;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 
 public class TratamentoJson {
     ImobiliariaAPI imobiliariaAPI = new ImobiliariaAPI();
@@ -21,24 +19,31 @@ public class TratamentoJson {
     }
 
 
-    public ArrayList listaTiposCampos(String campo){
+    public ArrayList listaCampos(String campo){
 
-        campo = "cidade";
-        ArrayList<String> listaCampos = new ArrayList<String>();
+        ArrayList listaCampos = new ArrayList();
+        ArrayList<String> listaCamposConteudo = new ArrayList<>();
+
         int i, j;
 
         for ( i = 0; i < jsonArrayImoveis.length(); i++){
             if( i == 0){
-                listaCampos.add((String) jsonArrayImoveis.getJSONObject(i).get(campo));
+                listaCamposConteudo.add((String) jsonArrayImoveis.getJSONObject(i).get(campo));
             }else{
-                for( j = 0; j < listaCampos.size(); j++){
-                    if(!listaCampos.toString().contains((String) jsonArrayImoveis.getJSONObject(i).get(campo))){
-                        listaCampos.add((String) jsonArrayImoveis.getJSONObject(i).get(campo));
+                for( j = 0; j < listaCamposConteudo.size(); j++){
+                    if(!listaCamposConteudo.toString().contains((String) jsonArrayImoveis.getJSONObject(i).get(campo))){
+                        listaCamposConteudo.add((String) jsonArrayImoveis.getJSONObject(i).get(campo));
                     }
                 }
             }
         }
 
+        listaCampos.add(campo);
+        listaCampos.add(listaCamposConteudo);
+
         return listaCampos;
     }
+
+
+
 }
