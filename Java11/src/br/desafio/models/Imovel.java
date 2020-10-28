@@ -5,21 +5,17 @@ public class Imovel {
     private int Id;
     private String nome;
     private String bairro;
-    private String cep;
     private String cidade;
     private String fachada;
     private String rua;
-    private String planta;
 
-    public Imovel(int id, String nome, String bairro, String cep, String cidade, String fachada, String rua, String planta) {
+    public Imovel(int id, String nome, String bairro, String cidade, String fachada, String rua) {
         Id = id;
         this.nome = nome;
         this.bairro = bairro;
-        this.cep = cep;
         this.cidade = cidade;
         this.fachada = fachada;
         this.rua = rua;
-        this.planta = planta;
     }
 
     public int getId() {
@@ -34,10 +30,6 @@ public class Imovel {
         return bairro;
     }
 
-    public String getCep() {
-        return cep;
-    }
-
     public String getCidade() {
         return cidade;
     }
@@ -50,9 +42,6 @@ public class Imovel {
         return rua;
     }
 
-    public String getPlanta() {
-        return planta;
-    }
 
     @Override
     public String toString() {
@@ -60,11 +49,9 @@ public class Imovel {
                 "Id=" + Id +
                 ", nome='" + nome + '\'' +
                 ", bairro='" + bairro + '\'' +
-                ", cep='" + cep + '\'' +
                 ", cidade='" + cidade + '\'' +
                 ", fachada='" + fachada + '\'' +
                 ", rua='" + rua + '\'' +
-                ", planta='" + planta + '\'' +
                 '}';
     }
 }
