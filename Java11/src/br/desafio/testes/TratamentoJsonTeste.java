@@ -2,16 +2,30 @@ package br.desafio.testes;
 
 import br.desafio.API.ImobiliariaAPI;
 import br.desafio.filtroJSON.TratamentoJson;
+import org.json.JSONArray;
 
 public class TratamentoJsonTeste {
 
     public void run(){
+
         ImobiliariaAPI imobiliariaAPI = new ImobiliariaAPI();
+
+        JSONArray jsonArrayImoveis = null; // 587 imoveis
+
+        {
+            try {
+                jsonArrayImoveis = imobiliariaAPI.imoveisJsonArray();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         TratamentoJson tratamentoJson = new TratamentoJson();
 
-//        System.out.println(tratamentoJson.listaCamposSemRepeticao("cidade"));
-        System.out.println(tratamentoJson.jsonArrayImoveisFiltrados("planta", "preco", "670000"));
+        System.out.println(tratamentoJson.arrayListCamposSemRepeticao(jsonArrayImoveis,"cep"));
+        System.out.println(tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis,"1", "num"));
+
+        System.out.println(tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis,"1", "num").length());
 
 
 
