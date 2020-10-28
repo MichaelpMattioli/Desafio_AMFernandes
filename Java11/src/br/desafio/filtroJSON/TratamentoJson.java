@@ -19,4 +19,26 @@ public class TratamentoJson {
             e.printStackTrace();
         }
     }
+
+
+    public ArrayList listaTiposCampos(String campo){
+
+        campo = "cidade";
+        ArrayList<String> listaCampos = new ArrayList<String>();
+        int i, j;
+
+        for ( i = 0; i < jsonArrayImoveis.length(); i++){
+            if( i == 0){
+                listaCampos.add((String) jsonArrayImoveis.getJSONObject(i).get(campo));
+            }else{
+                for( j = 0; j < listaCampos.size(); j++){
+                    if(!listaCampos.toString().contains((String) jsonArrayImoveis.getJSONObject(i).get(campo))){
+                        listaCampos.add((String) jsonArrayImoveis.getJSONObject(i).get(campo));
+                    }
+                }
+            }
+        }
+
+        return listaCampos;
+    }
 }
