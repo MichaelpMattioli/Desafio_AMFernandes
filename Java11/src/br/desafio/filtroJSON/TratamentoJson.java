@@ -50,4 +50,38 @@ public class TratamentoJson {
         return listaCampos;
     }
 
+    public JSONArray jsonArrayImoveisFiltrados(String campo, String subCampo, String valorDeCampo){
+
+        JSONArray jsonArrayFiltrado = new JSONArray();
+
+        int i,j;
+
+        for ( i = 0; i < jsonArrayImoveis.length(); i++){
+
+            if(jsonArrayImoveis.getJSONObject(i).get(campo).getClass() == JSONObject.class){
+
+                JSONObject jsonObjectValorDeCampo = (JSONObject) jsonArrayImoveis.getJSONObject(i).get(campo);
+                System.out.println(jsonObjectValorDeCampo);
+
+                for( j = 0; j < jsonObjectValorDeCampo.length(); j++ ){
+                    String valorNoSubJson = (String) jsonObjectValorDeCampo.get(subCampo);
+                    System.out.println(valorNoSubJson);
+                    if(valorDeCampo.equals(valorNoSubJson)) {
+                        jsonArrayFiltrado.put(jsonArrayImoveis.getJSONObject(i));
+                    }
+                }
+            }
+
+            if(jsonArrayImoveis.getJSONObject(i).get(campo).getClass() == String.class && subCampo == null){
+                String valorNoJson = (String) jsonArrayImoveis.getJSONObject(i).get(campo);
+                if(valorDeCampo.equals(valorNoJson)) {
+                    jsonArrayFiltrado.put(jsonArrayImoveis.getJSONObject(i));
+                }
+            }
+        }
+
+        return jsonArrayFiltrado;
+    }
+
+
 }
