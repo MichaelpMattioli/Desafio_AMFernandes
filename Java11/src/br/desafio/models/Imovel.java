@@ -21,4 +21,50 @@ public class Imovel {
         this.rua = rua;
         this.planta = planta;
     }
+
+    public int getId() {
+        return Id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public String getFachada() {
+        return fachada;
+    }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public String getPlanta() {
+        return planta;
+    }
+
+    @Override
+    public String toString() {
+        return "Imovel{" +
+                "Id=" + Id +
+                ", nome='" + nome + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", cep='" + cep + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", fachada='" + fachada + '\'' +
+                ", rua='" + rua + '\'' +
+                ", planta='" + planta + '\'' +
+                '}';
+    }
 }
