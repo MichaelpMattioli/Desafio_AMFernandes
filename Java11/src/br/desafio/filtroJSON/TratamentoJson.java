@@ -1,15 +1,13 @@
 package br.desafio.filtroJSON;
 
-import br.desafio.API.ImobiliariaAPI;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 public class TratamentoJson {
 
-    public ArrayList arrayListCamposSemRepeticao(JSONArray jsonArray, String campo){ // Vale resaltar que existem vários imoveis sem condominio.
+    public ArrayList arrayListInfoCamposSemRepeticao(JSONArray jsonArray, String campo){ // Vale resaltar que existem vários imoveis sem condominio.
 
         ArrayList listaCampos = new ArrayList();
         ArrayList listaCamposConteudo = new ArrayList();
@@ -21,12 +19,13 @@ public class TratamentoJson {
                 listaCamposConteudo.add(jsonArray.getJSONObject(i).get(campo));
             }else{
                 for( j = 0; j < listaCamposConteudo.size(); j++){
-//                    if(jsonArrayImoveis.getJSONObject(0).getClass() == jsonArrayImoveis.getJSONObject(i).get(campo)){
-//
-//                    }
-                    if(!listaCamposConteudo.contains(jsonArray.getJSONObject(i).get(campo))){
-                        listaCamposConteudo.add(jsonArray.getJSONObject(i).get(campo));
+                    if(jsonArray.getJSONObject(i) != null){
+                        System.out.println(i);
+                        if(!listaCamposConteudo.contains(jsonArray.getJSONObject(i).get(campo))){
+                            listaCamposConteudo.add(jsonArray.getJSONObject(i).get(campo));
+                        }
                     }
+
                 }
             }
         }
@@ -36,6 +35,28 @@ public class TratamentoJson {
         listaCampos.add(listaCamposConteudo);
 
         return listaCampos;
+    }
+
+    public JSONArray jsonArrayImoveisOrdenacao(JSONArray jsonArray, String campo){
+
+        ArrayList arrayListInfoCampo = arrayListInfoCamposSemRepeticao(jsonArray, campo);
+        ArrayList arrayListValoresCampo = (ArrayList) arrayListInfoCampo.get(2);
+
+        JSONArray jsonArrayOrganizado = null;
+
+        int seNumero = 0;
+        int seString = 1;
+
+
+
+        int i;
+
+        for ( i = 0; i < jsonArray.length(); i++){
+
+        }
+
+        return jsonArrayOrganizado;
+
     }
 
     public JSONArray jsonArrayImoveisFiltrados(JSONArray jsonArray, String valorDeCampo ,String campo, String subCampo){
