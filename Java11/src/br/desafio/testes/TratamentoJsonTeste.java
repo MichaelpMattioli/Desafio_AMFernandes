@@ -23,7 +23,7 @@ public class TratamentoJsonTeste {
             }
         }
 
-        String campo = "bairro";
+        String campo = "num";
 
         TratamentoJson tratamentoJson = new TratamentoJson();
 
@@ -36,17 +36,23 @@ public class TratamentoJsonTeste {
 //        System.out.println(arrayList);
 //        System.out.println(arrayList.size());
 
-        System.out.println(tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis, "1450000", "planta", "preco" ));
+//        System.out.println(tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis, "1450000", "planta", "preco" ));
 
         // SORT
 
         Sorts sorts = new Sorts();
 
 
-        System.out.println(sorts.sortStringOrdemAlfabetica(arrayList));
+//        System.out.println(sorts.sortStringOrdemAlfabetica(arrayList));
+//        System.out.println(sorts.sortStringOrdemAlfabetica(arrayList).size());
 
-        System.out.println(sorts.sortNumber(arrayList));
 
+
+        System.out.println(sorts.sortNumber(0, arrayList));
+        System.out.println(sorts.sortNumber(0,arrayList).size());
+
+        System.out.println(tratamentoJson.jsonArrayImoveisOrdenacao(jsonArrayImoveis, campo));
+        System.out.println(tratamentoJson.jsonArrayImoveisOrdenacao(jsonArrayImoveis, campo).length());
 
     }
 }
