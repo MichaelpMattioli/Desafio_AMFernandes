@@ -1,7 +1,5 @@
 package br.desafio;
 
-import br.desafio.API.ImobiliariaAPI;
-import br.desafio.filtroJSON.TratamentoJson;
 import br.desafio.testes.TratamentoJsonTeste;
 
 public class Main {
