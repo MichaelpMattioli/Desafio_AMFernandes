@@ -66,6 +66,14 @@ public class TratamentoJson {
 
     }
 
+    public ArrayList sortNumber(int cresc_0_decresc_1, ArrayList arrayListNumber){
+
+        ArrayList arrayListRetorno = new ArrayList();
+
+        return arrayListRetorno;
+
+    }
+
     public ArrayList sortStringOrdemAlfabetica (ArrayList arrayListString){
 
         String stringValores[] = new String[arrayListString.size()];
