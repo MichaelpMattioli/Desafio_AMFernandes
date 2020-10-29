@@ -1,8 +1,10 @@
 package br.desafio.testes;
 
 import br.desafio.API.ImobiliariaAPI;
-import br.desafio.filtroJSON.TratamentoJson;
+import br.desafio.tratamentosJson.TratamentoJson;
 import org.json.JSONArray;
+
+import java.util.ArrayList;
 
 public class TratamentoJsonTeste {
 
@@ -20,33 +22,22 @@ public class TratamentoJsonTeste {
             }
         }
 
+        String campo = "bairro";
+
         TratamentoJson tratamentoJson = new TratamentoJson();
 
-        System.out.println(tratamentoJson.arrayListCamposSemRepeticao(jsonArrayImoveis,"cep"));
-        System.out.println(tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis,"1", "num"));
+        System.out.println(jsonArrayImoveis);
 
-        System.out.println(tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis,"1", "num").length());
+        System.out.println(tratamentoJson.arrayListInfoCamposSemRepeticao(jsonArrayImoveis,campo));
 
+        ArrayList arrayList = (ArrayList) tratamentoJson.arrayListInfoCamposSemRepeticao(jsonArrayImoveis,campo).get(2);
 
+//        System.out.println(arrayList);
+//        System.out.println(arrayList.size());
 
-
-//        try {
-//            System.out.println(imobiliariaAPI.imoveisJsonArray().getJSONObject(0));
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        System.out.println(tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis, "1450000", "planta", "preco" ));
+        System.out.println(tratamentoJson.sortStringOrdemAlfabetica(arrayList));
 
 
-//        ArrayList listaInfoCampo = tratamentoJson.listaCamposSemRepeticao("location");
-//
-//        ArrayList listaValorDeCampo = (ArrayList) listaInfoCampo.get(2);
-//
-//        JSONObject jsonObjectValorDeCampo = (JSONObject) listaValorDeCampo.get(0);
-//
-//        float longitude = jsonObjectValorDeCampo.getFloat("_long");
-//        float latitude = jsonObjectValorDeCampo.getFloat("_lat");
-//
-//        System.out.println(longitude + " : " + latitude);
     }
 }
