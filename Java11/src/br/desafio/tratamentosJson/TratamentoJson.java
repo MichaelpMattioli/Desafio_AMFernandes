@@ -73,7 +73,7 @@ public class TratamentoJson {
             }
             JSONArray jsonArrayImoveisFiltrados = jsonArrayImoveisFiltrados(jsonArray, valor.toString(), campo, null);
 
-            jsonArray.forEach(jsonobject -> {
+            jsonArrayImoveisFiltrados.forEach(jsonobject->{
                 jsonArrayOrganizado.put(jsonobject);
             });
 
