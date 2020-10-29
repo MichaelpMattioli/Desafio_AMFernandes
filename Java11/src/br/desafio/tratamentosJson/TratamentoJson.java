@@ -15,20 +15,19 @@ public class TratamentoJson {
         int i, j;
 
         for ( i = 0; i < jsonArray.length(); i++){
+
+            //Verifica se existe um campo
+            try{
+                jsonArray.getJSONObject(i).get(campo);
+            }catch (Exception e){
+                continue;
+            }
+
+            //Filtragem de valor de campo repetidos
             if( i == 0){
-                try{
-                    jsonArray.getJSONObject(i).get(campo);
-                }catch (Exception e){
-                    continue;
-                }
                 listaCamposConteudo.add(jsonArray.getJSONObject(i).get(campo));
             }else{
                 for( j = 0; j < listaCamposConteudo.size(); j++){
-                    try{
-                        jsonArray.getJSONObject(i).get(campo);
-                    }catch (Exception e){
-                        continue;
-                    }
 
                     JSONObject jsonObjectAux = jsonArray.getJSONObject(i);
                     if(!listaCamposConteudo.contains(jsonObjectAux.get(campo))){
@@ -39,7 +38,12 @@ public class TratamentoJson {
             }
         }
 
-        listaCampos.add(campo);
+        // Adciona no array as seguintes informações:
+        // indice(0) = o campo utilizado
+        // indice(1) = Numero de quantos valores encontrado
+        // indice(2) = O arrayList contendo os valores
+
+        listaCampos.add(campo); // Adicion
         listaCampos.add(listaCamposConteudo.size());
         listaCampos.add(listaCamposConteudo);
 
