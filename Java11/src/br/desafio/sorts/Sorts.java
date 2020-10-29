@@ -11,11 +11,49 @@ public class Sorts {
         Integer inteiro[] = new Integer[arrayListNumber.size()];
         Float flutuante[] = new Float[arrayListNumber.size()];
 
+        // Tratamento de numeros que são tenham formato Strings
+        if(arrayListNumber.get(0).getClass() == String.class){
+            boolean isPossibleInteger = false;
+            boolean isPossibleFloat = false;
+            try{
+                arrayListNumber.forEach(number ->{
+                    if(number.equals("")){
 
-        if( cresc_0_decresc_1 == 0){
+                    }else{
+                        Integer stringToNumber = Integer.parseInt((String) number);
+                    }
+
+                });
+                isPossibleInteger = true;
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            if(isPossibleInteger == true){
+
+                ArrayList arrayListAux = new ArrayList();
+
+                arrayListNumber.forEach(number ->{
+                    if(number.equals("")){
+                    }else{
+                    int stringToNumber = Integer.parseInt((String) number.toString());
+
+                    arrayListAux.add(stringToNumber);
+                    }
+                });
+
+                arrayListNumber.clear();
+
+                arrayListAux.forEach(number ->{
+                    arrayListNumber.add(number);
+                });
+            }
+
+
 
         }
 
+        // Ordenação de inteiros
         if(arrayListNumber.get(0).getClass() == Integer.class){
             int i, j, aux;
 
@@ -38,6 +76,7 @@ public class Sorts {
             }
         }
 
+        // Ordenação de pontos flutuantes
         if(arrayListNumber.get(0).getClass() == Float.class){
             Integer i, j;
             float aux;
@@ -71,10 +110,12 @@ public class Sorts {
         String stringAux;
         ArrayList arrayListRetorno = new ArrayList();
 
+        // Transforma o array em um vetor de string
         for ( int i = 0; i < arrayListString.size(); i++){
             stringValores[i] = (String) arrayListString.get(i);
         }
 
+        //Ordenação
         for (int i = 0; i < arrayListString.size(); i++) {
             for (int j = i + 1; j < arrayListString.size(); j++) {
                 if (stringValores[i].compareTo(stringValores[j]) > 0) {
@@ -85,6 +126,7 @@ public class Sorts {
             }
         }
 
+        // Transforma o vetor de string em array
         for ( int i = 0; i < stringValores.length; i++){
             arrayListRetorno.add(stringValores[i]);
         }
