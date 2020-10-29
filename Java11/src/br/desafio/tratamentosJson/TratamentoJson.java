@@ -53,17 +53,32 @@ public class TratamentoJson {
 
     public JSONArray jsonArrayImoveisOrdenacao(JSONArray jsonArray, String campo){
 
+        JSONArray jsonArrayOrganizado = new JSONArray();
+
+        // Filtragem dos valores de campos utilizados
         ArrayList arrayListInfoCampo = arrayListInfoCamposSemRepeticao(jsonArray, campo);
         ArrayList arrayListValoresCampo = (ArrayList) arrayListInfoCampo.get(2);
 
         Sorts sorts = new Sorts();
 
-        JSONArray jsonArrayOrganizado = null;
-
         boolean seNumero = true;
         boolean seString = false;
 
+        // Ordenação de numeros
         ArrayList arrayListValoresCampoOrdenado = sorts.sortNumber(0, arrayListValoresCampo);
+
+        arrayListValoresCampoOrdenado.forEach(valor ->{
+            if(valor == null){
+                valor = "";
+            }
+            JSONArray jsonArrayImoveisFiltrados = jsonArrayImoveisFiltrados(jsonArray, valor.toString(), campo, null);
+
+            jsonArray.forEach(jsonobject -> {
+                jsonArrayOrganizado.put(jsonobject);
+            });
+
+        });
+
 
 
 
