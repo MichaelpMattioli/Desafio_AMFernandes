@@ -1,6 +1,7 @@
 package br.desafio.testes;
 
 import br.desafio.API.ImobiliariaAPI;
+import br.desafio.sorts.Sorts;
 import br.desafio.tratamentosJson.TratamentoJson;
 import org.json.JSONArray;
 
@@ -36,7 +37,15 @@ public class TratamentoJsonTeste {
 //        System.out.println(arrayList.size());
 
         System.out.println(tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis, "1450000", "planta", "preco" ));
-        System.out.println(tratamentoJson.sortStringOrdemAlfabetica(arrayList));
+
+        // SORT
+
+        Sorts sorts = new Sorts();
+
+
+        System.out.println(sorts.sortStringOrdemAlfabetica(arrayList));
+
+        System.out.println(sorts.sortNumber(arrayList));
 
 
     }
