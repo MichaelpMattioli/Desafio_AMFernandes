@@ -66,42 +66,6 @@ public class TratamentoJson {
 
     }
 
-    public ArrayList sortNumber(int cresc_0_decresc_1, ArrayList arrayListNumber){
-
-        ArrayList arrayListRetorno = new ArrayList();
-
-        return arrayListRetorno;
-
-    }
-
-    public ArrayList sortStringOrdemAlfabetica (ArrayList arrayListString){
-
-        String stringValores[] = new String[arrayListString.size()];
-        String stringAux;
-        ArrayList arrayListRetorno = new ArrayList();
-
-        for ( int i = 0; i < arrayListString.size(); i++){
-            stringValores[i] = (String) arrayListString.get(i);
-        }
-
-        for (int i = 0; i < arrayListString.size(); i++) {
-            for (int j = i + 1; j < arrayListString.size(); j++) {
-                if (stringValores[i].compareTo(stringValores[j]) > 0) {
-                    stringAux = stringValores[i];
-                    stringValores[i] = stringValores[j];
-                    stringValores[j] = stringAux;
-                }
-            }
-        }
-
-        for ( int i = 0; i < stringValores.length; i++){
-            arrayListRetorno.add(stringValores[i]);
-        }
-
-        return arrayListRetorno;
-
-    }
-
     public JSONArray jsonArrayImoveisFiltrados(JSONArray jsonArray, String valorDeCampo ,String campo, String subCampo){
 
         JSONArray jsonArrayFiltrado = new JSONArray();
