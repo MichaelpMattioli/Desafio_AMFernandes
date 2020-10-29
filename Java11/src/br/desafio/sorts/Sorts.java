@@ -13,12 +13,16 @@ public class Sorts {
 
         // Tratamento de numeros que são tenham formato Strings
         if(arrayListNumber.get(0).getClass() == String.class){
+
             boolean isPossibleInteger = false;
             boolean isPossibleFloat = false;
+
+            ArrayList arrayListAux = new ArrayList();
+
             try{
                 arrayListNumber.forEach(number ->{
                     if(number.equals("")){
-
+//                        arrayListAux.add(number);
                     }else{
                         Integer stringToNumber = Integer.parseInt((String) number);
                     }
@@ -30,8 +34,6 @@ public class Sorts {
             }
 
             if(isPossibleInteger == true){
-
-                ArrayList arrayListAux = new ArrayList();
 
                 arrayListNumber.forEach(number ->{
                     if(number.equals("")){
@@ -54,49 +56,99 @@ public class Sorts {
         }
 
         // Ordenação de inteiros
-        if(arrayListNumber.get(0).getClass() == Integer.class){
-            int i, j, aux;
+        if( cresc_0_decresc_1 == 0){
+            if(arrayListNumber.get(0).getClass() == Integer.class){
+                int i, j, aux;
 
-            for ( i = 0; i < arrayListNumber.size(); i++){
-                inteiro[i] = Integer.parseInt(arrayListNumber.get(i).toString());
-            }
+                for ( i = 0; i < arrayListNumber.size(); i++){
+                    inteiro[i] = Integer.parseInt(arrayListNumber.get(i).toString());
+                }
 
-            for(i = 0; i < (arrayListNumber.size()-1); i++){ // Selection Sort
-                for(j=i; j<arrayListNumber.size(); j++){
-                    if(inteiro[j] < inteiro[i]){
-                        aux = inteiro[i];
-                        inteiro[i] = inteiro[j];
-                        inteiro[j] = aux;
+                for(i = 0; i < (arrayListNumber.size()); i++){ // Selection Sort
+                    for(j=i; j<arrayListNumber.size(); j++){
+                        if(inteiro[j] < inteiro[i]){
+                            aux = inteiro[i];
+                            inteiro[i] = inteiro[j];
+                            inteiro[j] = aux;
+                        }
                     }
                 }
-            }
 
-            for ( i = 0; i < inteiro.length; i++){
-                arrayListRetorno.add(inteiro[i]);
+                for ( i = 0; i < inteiro.length; i++){
+                    arrayListRetorno.add(inteiro[i]);
+                }
+            }
+        }else{
+            if(arrayListNumber.get(0).getClass() == Integer.class){
+                int i, j, aux;
+
+                for ( i = 0; i < arrayListNumber.size(); i++){
+                    inteiro[i] = Integer.parseInt(arrayListNumber.get(i).toString());
+                }
+
+                for(i = 0; i < (arrayListNumber.size()); i++){ // Selection Sort
+                    for(j=i; j<arrayListNumber.size(); j++){
+                        if(inteiro[j] > inteiro[i]){
+                            aux = inteiro[i];
+                            inteiro[i] = inteiro[j];
+                            inteiro[j] = aux;
+                        }
+                    }
+                }
+
+                for ( i = 0; i < inteiro.length; i++){
+                    arrayListRetorno.add(inteiro[i]);
+                }
             }
         }
 
+
         // Ordenação de pontos flutuantes
-        if(arrayListNumber.get(0).getClass() == Float.class){
-            Integer i, j;
-            float aux;
+        if(cresc_0_decresc_1 == 0){
+            if(arrayListNumber.get(0).getClass() == Float.class){
+                Integer i, j;
+                float aux;
 
-            for ( i = 0; i < arrayListNumber.size(); i++){
-                flutuante[i] = Float.parseFloat(arrayListNumber.get(i).toString());
-            }
+                for ( i = 0; i < arrayListNumber.size(); i++){
+                    flutuante[i] = Float.parseFloat(arrayListNumber.get(i).toString());
+                }
 
-            for(i = 0; i < (arrayListNumber.size()-1); i++){ // Selection Sort
-                for(j=i; j<arrayListNumber.size(); j++){
-                    if(flutuante[j] < flutuante[i]){
-                        aux = flutuante[i];
-                        flutuante[i] = flutuante[j];
-                        flutuante[j] = aux;
+                for(i = 0; i < (arrayListNumber.size()); i++){ // Selection Sort
+                    for(j=i; j<arrayListNumber.size(); j++){
+                        if(flutuante[j] < flutuante[i]){
+                            aux = flutuante[i];
+                            flutuante[i] = flutuante[j];
+                            flutuante[j] = aux;
+                        }
                     }
                 }
-            }
 
-            for ( i = 0; i < inteiro.length; i++){
-                arrayListRetorno.add(inteiro[i]);
+                for ( i = 0; i < inteiro.length; i++){
+                    arrayListRetorno.add(inteiro[i]);
+                }
+            }
+        }else{
+            if(arrayListNumber.get(0).getClass() == Float.class){
+                Integer i, j;
+                float aux;
+
+                for ( i = 0; i < arrayListNumber.size(); i++){
+                    flutuante[i] = Float.parseFloat(arrayListNumber.get(i).toString());
+                }
+
+                for(i = 0; i < (arrayListNumber.size()); i++){ // Selection Sort
+                    for(j=i; j<arrayListNumber.size(); j++){
+                        if(flutuante[j] > flutuante[i]){
+                            aux = flutuante[i];
+                            flutuante[i] = flutuante[j];
+                            flutuante[j] = aux;
+                        }
+                    }
+                }
+
+                for ( i = 0; i < inteiro.length; i++){
+                    arrayListRetorno.add(inteiro[i]);
+                }
             }
         }
 
