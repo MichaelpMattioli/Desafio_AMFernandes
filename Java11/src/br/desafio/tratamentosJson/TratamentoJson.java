@@ -1,5 +1,6 @@
 package br.desafio.tratamentosJson;
 
+import br.desafio.sorts.Sorts;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -55,16 +56,18 @@ public class TratamentoJson {
         ArrayList arrayListInfoCampo = arrayListInfoCamposSemRepeticao(jsonArray, campo);
         ArrayList arrayListValoresCampo = (ArrayList) arrayListInfoCampo.get(2);
 
+        Sorts sorts = new Sorts();
+
         JSONArray jsonArrayOrganizado = null;
 
-        int seNumero = 0;
-        int seString = 1;
+        boolean seNumero = true;
+        boolean seString = false;
 
-        int i;
+        ArrayList arrayListValoresCampoOrdenado = sorts.sortNumber(0, arrayListValoresCampo);
 
-        for ( i = 0; i < jsonArray.length(); i++){
 
-        }
+
+
 
         return jsonArrayOrganizado;
 
