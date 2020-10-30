@@ -63,66 +63,18 @@ public class TratamentoJson {
 
         }
 
-
-
         // Adciona no array as seguintes informações:
         // indice(0) = o campo utilizado
         // indice(1) = o subCampo utilizado
         // indice(2) = Numero de quantos valores encontrado
         // indice(3) = O arrayList contendo os valores
 
-        listaCampos.add(campo); // Adicion
+        listaCampos.add(campo);
         listaCampos.add(subCampo);
         listaCampos.add(listaCamposConteudo.size());
         listaCampos.add(listaCamposConteudo);
 
         return listaCampos;
-    }
-
-    public JSONArray jsonArrayImoveisFiltrados(JSONArray jsonArray, String valorDeCampo ,String campo, String subCampo){
-
-        JSONArray jsonArrayFiltrado = new JSONArray();
-
-        int i,j;
-
-        for ( i = 0; i < jsonArray.length(); i++){
-
-            //Verifica se existe um campo
-            try{
-                jsonArray.getJSONObject(i).get(campo);
-            }catch (Exception e){
-                continue;
-            }
-
-            // Verifica se o valor do campo é um JSONObject
-            if(jsonArray.getJSONObject(i).get(campo).getClass() == JSONObject.class){
-
-                JSONObject jsonObjectValorDeCampo = (JSONObject) jsonArray.getJSONObject(i).get(campo);
-
-                for( j = 0; j < jsonObjectValorDeCampo.length(); j++ ){
-
-                    //Verifica se existe um campo
-                    try{
-                        jsonObjectValorDeCampo.get(subCampo);
-                    }catch (Exception e){
-                        continue;
-                    }
-                    if(valorDeCampo.equals(jsonObjectValorDeCampo.get(subCampo).toString())) {
-                        jsonArrayFiltrado.put(jsonArray.getJSONObject(i));
-                    }
-                }
-            }
-
-            //Verifica se o valor do campo é uma String
-            if(jsonArray.getJSONObject(i).get(campo).getClass() == String.class && subCampo == null){
-                String valorNoJson = (String) jsonArray.getJSONObject(i).get(campo);
-                if(valorDeCampo.equals(valorNoJson)) {
-                    jsonArrayFiltrado.put(jsonArray.getJSONObject(i));
-                }
-            }
-        }
-
-        return jsonArrayFiltrado;
     }
 
 }
