@@ -36,7 +36,7 @@ public class InfoCamposJsonArray {
         ArrayList arrayListCampoOrganizada = sorts.sortStringOrdemAlfabetica(arrayListValorCampo);
 
         arrayListCampoOrganizada.forEach(cidade -> {
-            JSONArray jsonArrayFiltrado = tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis, cidade.toString(), campo, subCampo );
+            JSONArray jsonArrayFiltrado = jsonArrayImoveisFiltrados(cidade.toString(), campo, subCampo );
 
             jsonArrayFiltrado.forEach(jsonObject ->{
                 jsonArrayRetorno.put(jsonObject);
@@ -57,7 +57,7 @@ public class InfoCamposJsonArray {
         ArrayList arrayListCampoOrganizada = (ArrayList) sorts.sortNumber(cresc_0_decres_1, arrayListValorCampo);
 
         arrayListCampoOrganizada.forEach(cidade -> {
-            JSONArray jsonArrayFiltrado = tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis, cidade.toString(), campo, subCampo );
+            JSONArray jsonArrayFiltrado = jsonArrayImoveisFiltrados(cidade.toString(), campo, subCampo );
 
             jsonArrayFiltrado.forEach(jsonObject ->{
                 jsonArrayRetorno.put(jsonObject);
@@ -93,7 +93,7 @@ public class InfoCamposJsonArray {
         });
 
         arrayListValorCampoFiltradoNumber.forEach(cidade -> {
-            JSONArray jsonArrayFiltrado = tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis, cidade.toString(), campo, subCampo );
+            JSONArray jsonArrayFiltrado = jsonArrayImoveisFiltrados(cidade.toString(), campo, subCampo );
 
             jsonArrayFiltrado.forEach(jsonObject ->{
                 jsonArrayRetorno.put(jsonObject);
