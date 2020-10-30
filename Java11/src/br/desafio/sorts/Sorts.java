@@ -6,7 +6,17 @@ import java.util.ArrayList;
 
 public class Sorts {
 
-    public ArrayList sortNumber(int cresc_0_decresc_1, ArrayList arrayListNumber){
+    public ArrayList sortNumber(int cresc_0_decresc_1, ArrayList arrayListNumber1){
+
+        ArrayList arrayListNumber = arrayListNumber1;
+
+        for ( int i =0; i < arrayListNumber.size()-1; i++){
+
+            if(arrayListNumber.get(i).equals(null)){
+                arrayListNumber.remove(i);
+            }
+        }
+
 
         ArrayList arrayListRetorno = new ArrayList();
 
