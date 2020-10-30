@@ -1,5 +1,6 @@
 package br.desafio.sorts;
 
+import jdk.swing.interop.SwingInterOpUtils;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -10,32 +11,21 @@ public class Sorts {
 
         ArrayList arrayListNumber = new ArrayList();
 
-        arrayListNumber1.forEach(item->{
-            arrayListNumber.add(item);
-        });
-
         ArrayList arrayListNotNumber = new ArrayList();
 
         ArrayList arrayListRetorno = new ArrayList();
 
+        //Tratamento de valores que não sejam números
+        for ( int i =0; i < arrayListNumber1.size(); i++){
+
+            if(arrayListNumber1.get(i).getClass() == Integer.class || arrayListNumber1.get(i).getClass() == Double.class){
+                arrayListNumber.add(arrayListNumber1.get(i));
+            }else{
+                arrayListNotNumber.add(arrayListNumber1.get(i));
+            }
+        }
+
         Object numero[] = new Object[arrayListNumber.size()];
-
-        //Tratamento de valores que não sejam números
-        for ( int i =0; i < arrayListNumber.size(); i++){
-
-            if(arrayListNumber.get(i).getClass() != Integer.class && arrayListNumber.get(i).getClass() != Double.class){
-                arrayListNotNumber.add(arrayListNumber.get(i));
-            }
-        }
-
-        //Tratamento de valores que não sejam números
-        for ( int i =0; i < arrayListNumber.size()-1; i++){
-
-            if(arrayListNumber.get(i).getClass() != Integer.class && arrayListNumber.get(i).getClass() != Double.class){
-                arrayListNumber.remove(i);
-            }
-        }
-
 
         // Ordenação de inteiros
         if( cresc_0_decresc_1 == 0){
@@ -43,14 +33,14 @@ public class Sorts {
                 int i, j;
                 Object aux;
 
+                //Transforma o arrayList em um vetor de objects
                 for ( i = 0; i < arrayListNumber.size(); i++){
                     numero[i] = arrayListNumber.get(i);
                 }
 
-                for(i = 0; i < (arrayListNumber.size()); i++){ // Selection Sort
-                    for(j=i; j<arrayListNumber.size(); j++){
-
-
+                // Selection Sort
+                for(i = 0; i < arrayListNumber.size()-1; i++){
+                    for(j=i; j < arrayListNumber.size(); j++){
 
                         if(numero[j].getClass() == Integer.class && numero[i].getClass() == Integer.class){
 
@@ -95,7 +85,8 @@ public class Sorts {
                     numero[i] = arrayListNumber.get(i);
                 }
 
-                for (i = 0; i < (arrayListNumber.size()); i++) { // Selection Sort
+                // Selection Sort
+                for (i = 0; i < (arrayListNumber.size()-1); i++) {
                     for (j = i; j < arrayListNumber.size(); j++) {
 
 
@@ -136,7 +127,9 @@ public class Sorts {
         }
 
         //Adiciona os valores que não são números no final do arrayListRetorno
-        arrayListNotNumber.forEach(item -> arrayListRetorno.add(item));
+        for(int i = 0; i < arrayListNotNumber.size(); i++){
+            arrayListRetorno.add(arrayListNotNumber.get(i));
+        }
 
         return arrayListRetorno;
 
