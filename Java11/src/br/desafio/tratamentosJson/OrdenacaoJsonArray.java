@@ -9,34 +9,26 @@ import java.util.ArrayList;
 
 public class OrdenacaoJsonArray {
 
-    ImobiliariaAPI imobiliariaAPI = new ImobiliariaAPI();
+
     InfoCamposJsonArray infoCamposJsonArray = new InfoCamposJsonArray();
     Sorts sorts = new Sorts();
 
-    JSONArray jsonArrayImoveis; // 587 imoveis
 
-    {
-        try {
-            jsonArrayImoveis = imobiliariaAPI.imoveisJsonArray();
-        } catch (Exception e) {
-            jsonArrayImoveis = new JSONArray();
-        }
-    }
 
-    public JSONArray jsonArraySortCamposAlfabetic(String campo){
+    public JSONArray jsonArraySortCamposAlfabetic(JSONArray jsonArray, String campo){
 
         JSONArray jsonArrayRetorno = new JSONArray();
 
         String subCampo = null;
 
-        ArrayList arrayListValorCampoInfo = infoCamposJsonArray.arrayListInfoCamposSemRepeticao(jsonArrayImoveis, campo, subCampo);
+        ArrayList arrayListValorCampoInfo = infoCamposJsonArray.arrayListInfoCamposSemRepeticao(jsonArray, campo, subCampo);
 
         ArrayList arrayListValorCampo = (ArrayList) arrayListValorCampoInfo.get(arrayListValorCampoInfo.size()-1);
 
         ArrayList arrayListCampoOrganizada = sorts.sortStringOrdemAlfabetica(arrayListValorCampo);
 
         arrayListCampoOrganizada.forEach(cidade -> {
-            JSONArray jsonArrayFiltrado = jsonArrayImoveisFiltrados(cidade.toString(), campo, subCampo );
+            JSONArray jsonArrayFiltrado = jsonArrayImoveisFiltrados(jsonArray, cidade.toString(), campo, subCampo );
 
             jsonArrayFiltrado.forEach(jsonObject ->{
                 jsonArrayRetorno.put(jsonObject);
@@ -47,17 +39,17 @@ public class OrdenacaoJsonArray {
 
     }
 
-    public JSONArray jsonArraySortCamposNumber(int cresc_0_decres_1, String campo, String subCampo){
+    public JSONArray jsonArraySortCamposNumber(JSONArray jsonArray,int cresc_0_decres_1, String campo, String subCampo){
         JSONArray jsonArrayRetorno = new JSONArray();
 
-        ArrayList arrayListValorCampoInfo = infoCamposJsonArray.arrayListInfoCamposSemRepeticao(jsonArrayImoveis, campo, subCampo);
+        ArrayList arrayListValorCampoInfo = infoCamposJsonArray.arrayListInfoCamposSemRepeticao(jsonArray, campo, subCampo);
 
         ArrayList arrayListValorCampo = (ArrayList) arrayListValorCampoInfo.get(arrayListValorCampoInfo.size()-1);
 
         ArrayList arrayListCampoOrganizada = (ArrayList) sorts.sortNumber(cresc_0_decres_1, arrayListValorCampo);
 
         arrayListCampoOrganizada.forEach(cidade -> {
-            JSONArray jsonArrayFiltrado = jsonArrayImoveisFiltrados(cidade.toString(), campo, subCampo );
+            JSONArray jsonArrayFiltrado = jsonArrayImoveisFiltrados(jsonArray, cidade.toString(), campo, subCampo );
 
             jsonArrayFiltrado.forEach(jsonObject ->{
                 jsonArrayRetorno.put(jsonObject);
@@ -67,11 +59,11 @@ public class OrdenacaoJsonArray {
         return jsonArrayRetorno;
     }
 
-    public JSONArray jsonArraySortCamposNumberRange(Double valorMin, Double valorMax,int cresc_0_decres_1, String campo, String subCampo){
+    public JSONArray jsonArraySortCamposNumberRange(JSONArray jsonArray, Double valorMin, Double valorMax,int cresc_0_decres_1, String campo, String subCampo){
 
         JSONArray jsonArrayRetorno = new JSONArray();
 
-        JSONArray jsonArrayNumerosOrdenados = jsonArraySortCamposNumber(cresc_0_decres_1, campo, subCampo);
+        JSONArray jsonArrayNumerosOrdenados = jsonArraySortCamposNumber(jsonArray ,cresc_0_decres_1, campo, subCampo);
 
         ArrayList arrayListValorCampoInfo = infoCamposJsonArray.arrayListInfoCamposSemRepeticao(jsonArrayNumerosOrdenados, campo, subCampo);
 
@@ -93,7 +85,7 @@ public class OrdenacaoJsonArray {
         });
 
         arrayListValorCampoFiltradoNumber.forEach(cidade -> {
-            JSONArray jsonArrayFiltrado = jsonArrayImoveisFiltrados(cidade.toString(), campo, subCampo );
+            JSONArray jsonArrayFiltrado = jsonArrayImoveisFiltrados(jsonArray, cidade.toString(), campo, subCampo );
 
             jsonArrayFiltrado.forEach(jsonObject ->{
                 jsonArrayRetorno.put(jsonObject);
@@ -103,25 +95,25 @@ public class OrdenacaoJsonArray {
         return jsonArrayRetorno;
     }
 
-    public JSONArray jsonArrayImoveisFiltrados(String valorDeCampo ,String campo, String subCampo){
+    public JSONArray jsonArrayImoveisFiltrados(JSONArray jsonArray, String valorDeCampo ,String campo, String subCampo){
 
         JSONArray jsonArrayFiltrado = new JSONArray();
 
         int i,j;
 
-        for ( i = 0; i < jsonArrayImoveis.length(); i++){
+        for ( i = 0; i < jsonArray.length(); i++){
 
             //Verifica se existe um campo
             try{
-                jsonArrayImoveis.getJSONObject(i).get(campo);
+                jsonArray.getJSONObject(i).get(campo);
             }catch (Exception e){
                 continue;
             }
 
             // Verifica se o valor do campo é um JSONObject
-            if(jsonArrayImoveis.getJSONObject(i).get(campo).getClass() == JSONObject.class){
+            if(jsonArray.getJSONObject(i).get(campo).getClass() == JSONObject.class){
 
-                JSONObject jsonObjectValorDeCampo = (JSONObject) jsonArrayImoveis.getJSONObject(i).get(campo);
+                JSONObject jsonObjectValorDeCampo = (JSONObject) jsonArray.getJSONObject(i).get(campo);
 
                 for( j = 0; j < jsonObjectValorDeCampo.length(); j++ ){
 
@@ -132,16 +124,16 @@ public class OrdenacaoJsonArray {
                         continue;
                     }
                     if(valorDeCampo.equals(jsonObjectValorDeCampo.get(subCampo).toString())) {
-                        jsonArrayFiltrado.put(jsonArrayImoveis.getJSONObject(i));
+                        jsonArrayFiltrado.put(jsonArray.getJSONObject(i));
                     }
                 }
             }
 
             //Verifica se o valor do campo é uma String
-            if(jsonArrayImoveis.getJSONObject(i).get(campo).getClass() == String.class && subCampo == null){
-                String valorNoJson = (String) jsonArrayImoveis.getJSONObject(i).get(campo);
+            if(jsonArray.getJSONObject(i).get(campo).getClass() == String.class && subCampo == null){
+                String valorNoJson = (String) jsonArray.getJSONObject(i).get(campo);
                 if(valorDeCampo.equals(valorNoJson)) {
-                    jsonArrayFiltrado.put(jsonArrayImoveis.getJSONObject(i));
+                    jsonArrayFiltrado.put(jsonArray.getJSONObject(i));
                 }
             }
         }
