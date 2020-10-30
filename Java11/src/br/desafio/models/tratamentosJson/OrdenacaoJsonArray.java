@@ -1,7 +1,6 @@
-package br.desafio.tratamentosJson;
+package br.desafio.models.tratamentosJson;
 
-import br.desafio.API.ImobiliariaAPI;
-import br.desafio.sorts.Sorts;
+import br.desafio.models.sorts.Sorts;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

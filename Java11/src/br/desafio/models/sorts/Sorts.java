@@ -1,4 +1,4 @@
-package br.desafio.sorts;
+package br.desafio.models.sorts;
 
 import java.util.ArrayList;
 
