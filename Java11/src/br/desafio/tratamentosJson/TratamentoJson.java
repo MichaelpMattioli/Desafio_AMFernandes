@@ -79,44 +79,6 @@ public class TratamentoJson {
         return listaCampos;
     }
 
-    public JSONArray jsonArrayImoveisOrdenacao(JSONArray jsonArray, String campo){
-
-        JSONArray jsonArrayOrganizado = new JSONArray();
-
-        // Filtragem dos valores de campos utilizados
-        ArrayList arrayListInfoCampo = arrayListInfoCamposSemRepeticao(jsonArray, campo,null);
-        ArrayList arrayListValoresCampo = (ArrayList) arrayListInfoCampo.get(arrayListInfoCampo.size()-1);
-
-        Sorts sorts = new Sorts();
-
-        boolean seNumero = true;
-        boolean seString = false;
-
-        // Ordenação de numeros
-//        ArrayList arrayListValoresCampoOrdenado = sorts.sortNumber(0, arrayListValoresCampo);
-        ArrayList arrayListValoresCampoOrdenado = sorts.sortStringOrdemAlfabetica(arrayListValoresCampo);
-
-        arrayListValoresCampoOrdenado.forEach(valor ->{
-            if(valor == null){
-                valor = "";
-            }
-            JSONArray jsonArrayImoveisFiltrados = jsonArrayImoveisFiltrados(jsonArray, valor.toString(), campo, null);
-
-            jsonArrayImoveisFiltrados.forEach(jsonobject->{
-                jsonArrayOrganizado.put(jsonobject);
-            });
-
-        });
-
-
-
-
-
-
-        return jsonArrayOrganizado;
-
-    }
-
     public JSONArray jsonArrayImoveisFiltrados(JSONArray jsonArray, String valorDeCampo ,String campo, String subCampo){
 
         JSONArray jsonArrayFiltrado = new JSONArray();
@@ -155,6 +117,39 @@ public class TratamentoJson {
 
     public JSONArray jsonArrayImoveisFiltrados(JSONArray jsonArray, String valorDeCampo ,String campo){
         return jsonArrayImoveisFiltrados(jsonArray, valorDeCampo, campo, null);
+    }
+
+    public JSONArray jsonArrayImoveisOrdenacao(JSONArray jsonArray, String campo){
+
+        JSONArray jsonArrayOrganizado = new JSONArray();
+
+        // Filtragem dos valores de campos utilizados
+        ArrayList arrayListInfoCampo = arrayListInfoCamposSemRepeticao(jsonArray, campo,null);
+        ArrayList arrayListValoresCampo = (ArrayList) arrayListInfoCampo.get(arrayListInfoCampo.size()-1);
+
+        Sorts sorts = new Sorts();
+
+        boolean seNumero = true;
+        boolean seString = false;
+
+        // Ordenação de numeros
+//        ArrayList arrayListValoresCampoOrdenado = sorts.sortNumber(0, arrayListValoresCampo);
+        ArrayList arrayListValoresCampoOrdenado = sorts.sortStringOrdemAlfabetica(arrayListValoresCampo);
+
+        arrayListValoresCampoOrdenado.forEach(valor ->{
+            if(valor == null){
+                valor = "";
+            }
+            JSONArray jsonArrayImoveisFiltrados = jsonArrayImoveisFiltrados(jsonArray, valor.toString(), campo);
+
+            jsonArrayImoveisFiltrados.forEach(jsonobject->{
+                jsonArrayOrganizado.put(jsonobject);
+            });
+
+        });
+
+        return jsonArrayOrganizado;
+
     }
 
 
