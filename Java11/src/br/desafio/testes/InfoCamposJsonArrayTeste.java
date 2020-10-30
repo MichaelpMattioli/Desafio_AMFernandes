@@ -7,7 +7,7 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 
-public class TratamentoJsonTeste {
+public class InfoCamposJsonArrayTeste {
 
     public void run(){
 
@@ -55,8 +55,8 @@ public class TratamentoJsonTeste {
 
         // Filtro
 
-        System.out.println(tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis, valorDeCampo, campo,subCampo));
-        System.out.println(tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis, valorDeCampo, campo,subCampo).length());
+//        System.out.println(tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis, valorDeCampo, campo,subCampo));
+//        System.out.println(tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis, valorDeCampo, campo,subCampo).length());
 
     }
 }
