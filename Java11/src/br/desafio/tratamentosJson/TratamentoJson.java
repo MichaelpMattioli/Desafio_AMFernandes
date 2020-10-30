@@ -100,6 +100,13 @@ public class TratamentoJson {
                 JSONObject jsonObjectValorDeCampo = (JSONObject) jsonArray.getJSONObject(i).get(campo);
 
                 for( j = 0; j < jsonObjectValorDeCampo.length(); j++ ){
+
+                    //Verifica se existe um campo
+                    try{
+                        jsonObjectValorDeCampo.get(subCampo);
+                    }catch (Exception e){
+                        continue;
+                    }
                     if(valorDeCampo.equals(jsonObjectValorDeCampo.get(subCampo).toString())) {
                         jsonArrayFiltrado.put(jsonArray.getJSONObject(i));
                     }
