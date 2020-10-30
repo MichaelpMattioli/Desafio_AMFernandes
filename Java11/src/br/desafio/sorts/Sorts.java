@@ -1,8 +1,5 @@
 package br.desafio.sorts;
 
-import jdk.swing.interop.SwingInterOpUtils;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 
 public class Sorts {
