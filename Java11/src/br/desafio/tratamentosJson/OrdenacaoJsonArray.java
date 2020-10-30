@@ -74,15 +74,26 @@ public class OrdenacaoJsonArray {
 
         ArrayList arrayListValorCampoInfo = tratamentoJson.arrayListInfoCamposSemRepeticao(jsonArrayNumerosOrdenados, campo, subCampo);
 
-        ArrayList arrayListValorCampoFiltrado = new ArrayList();
+        ArrayList arrayListValorCampo = (ArrayList) arrayListValorCampoInfo.get(arrayListValorCampoInfo.size()-1);
 
-        arrayListValorCampoInfo.forEach(valor -> {
-            if ( (Double) valor >= valorMin &&  (Double) valor <= valorMax){
-                arrayListValorCampoFiltrado.add(valor);
+        ArrayList arrayListValorCampoFiltradoNumber = new ArrayList();
+
+        ArrayList arrayListValorCampoFiltradoNotNumber = new ArrayList();
+
+        arrayListValorCampo.forEach(valor -> {
+            if ( valor.getClass() == Integer.class){
+                if ( (Integer) valor >= valorMin &&  (Integer) valor <= valorMax){
+                    arrayListValorCampoFiltradoNumber.add(valor);
+                }
+            }else if( valor.getClass() == Double.class) {
+                if ((Double) valor >= valorMin && (Double) valor <= valorMax) {
+                    arrayListValorCampoFiltradoNumber.add(valor);
+                }
             }
+
         });
 
-        arrayListValorCampoFiltrado.forEach(cidade -> {
+        arrayListValorCampoFiltradoNumber.forEach(cidade -> {
             JSONArray jsonArrayFiltrado = tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis, cidade.toString(), campo, subCampo );
 
             jsonArrayFiltrado.forEach(jsonObject ->{
