@@ -11,9 +11,10 @@ public class Sorts {
         ArrayList arrayListNumber = arrayListNumber1;
         ArrayList arrayListNotNumber = new ArrayList();
 
+        //Tratamento de valores que não sejam números
         for ( int i =0; i < arrayListNumber.size()-1; i++){
 
-            if(arrayListNumber.get(i).getClass() != Integer.class){
+            if(arrayListNumber.get(i).getClass() != Integer.class && arrayListNumber.get(i).getClass() != Double.class){
                 arrayListNotNumber.add(arrayListNumber.get(i));
                 arrayListNumber.remove(i);
             }
@@ -24,6 +25,7 @@ public class Sorts {
 
         Integer inteiro[] = new Integer[arrayListNumber.size()];
         Float flutuante[] = new Float[arrayListNumber.size()];
+        Object numero[] = new Object[arrayListNumber.size()];
 
         // Tratamento de numeros que são tenham formato Strings
         if(arrayListNumber.get(0).getClass() == String.class){
@@ -71,97 +73,98 @@ public class Sorts {
 
         // Ordenação de inteiros
         if( cresc_0_decresc_1 == 0){
-            if(arrayListNumber.get(0).getClass() == Integer.class){
-                int i, j, aux;
+            if(arrayListNumber.get(0).getClass() != String.class){
+                int i, j;
+                Object aux;
 
                 for ( i = 0; i < arrayListNumber.size(); i++){
-                    inteiro[i] = Integer.parseInt(arrayListNumber.get(i).toString());
+                    numero[i] = arrayListNumber.get(i);
                 }
 
                 for(i = 0; i < (arrayListNumber.size()); i++){ // Selection Sort
                     for(j=i; j<arrayListNumber.size(); j++){
-                        if(inteiro[j] < inteiro[i]){
-                            aux = inteiro[i];
-                            inteiro[i] = inteiro[j];
-                            inteiro[j] = aux;
+
+
+
+                        if(numero[j].getClass() == Integer.class && numero[i].getClass() == Integer.class){
+
+                            if((Integer)numero[j] < (Integer)numero[i] ){
+                                aux = numero[i];
+                                numero[i] = numero[j];
+                                numero[j] = aux;
+                            }
+
+                        }else if(numero[j].getClass() == Integer.class && numero[i].getClass() == Double.class){
+                            if((Integer)numero[j] < (Double)numero[i] ){
+                                aux = numero[i];
+                                numero[i] = numero[j];
+                                numero[j] = aux;
+                            }
+                        }else if(numero[j].getClass() == Double.class && numero[i].getClass() == Integer.class){
+                            if((Double)numero[j] < (Integer)numero[i] ){
+                                aux = numero[i];
+                                numero[i] = numero[j];
+                                numero[j] = aux;
+                            }
+                        }else {
+                            if((Double)numero[j] < (Double) numero[i] ){
+                                aux = numero[i];
+                                numero[i] = numero[j];
+                                numero[j] = aux;
+                            }
                         }
                     }
                 }
 
                 for ( i = 0; i < inteiro.length; i++){
-                    arrayListRetorno.add(inteiro[i]);
+                    arrayListRetorno.add(numero[i]);
                 }
             }
         }else{
-            if(arrayListNumber.get(0).getClass() == Integer.class){
-                int i, j, aux;
+            if(arrayListNumber.get(0).getClass() != String.class) {
+                int i, j;
+                Object aux;
 
-                for ( i = 0; i < arrayListNumber.size(); i++){
-                    inteiro[i] = Integer.parseInt(arrayListNumber.get(i).toString());
+                for (i = 0; i < arrayListNumber.size(); i++) {
+                    numero[i] = arrayListNumber.get(i);
                 }
 
-                for(i = 0; i < (arrayListNumber.size()); i++){ // Selection Sort
-                    for(j=i; j<arrayListNumber.size(); j++){
-                        if(inteiro[j] > inteiro[i]){
-                            aux = inteiro[i];
-                            inteiro[i] = inteiro[j];
-                            inteiro[j] = aux;
+                for (i = 0; i < (arrayListNumber.size()); i++) { // Selection Sort
+                    for (j = i; j < arrayListNumber.size(); j++) {
+
+
+                        if (numero[j].getClass() == Integer.class && numero[i].getClass() == Integer.class) {
+
+                            if ((Integer) numero[j] > (Integer) numero[i]) {
+                                aux = numero[i];
+                                numero[i] = numero[j];
+                                numero[j] = aux;
+                            }
+
+                        } else if (numero[j].getClass() == Integer.class && numero[i].getClass() == Double.class) {
+                            if ((Integer) numero[j] > (Double) numero[i]) {
+                                aux = numero[i];
+                                numero[i] = numero[j];
+                                numero[j] = aux;
+                            }
+                        } else if (numero[j].getClass() == Double.class && numero[i].getClass() == Integer.class) {
+                            if ((Double) numero[j] > (Integer) numero[i]) {
+                                aux = numero[i];
+                                numero[i] = numero[j];
+                                numero[j] = aux;
+                            }
+                        } else {
+                            if ((Double) numero[j] > (Double) numero[i]) {
+                                aux = numero[i];
+                                numero[i] = numero[j];
+                                numero[j] = aux;
+                            }
                         }
                     }
                 }
 
-                for ( i = 0; i < inteiro.length; i++){
-                    arrayListRetorno.add(inteiro[i]);
-                }
-            }
-        }
-
-
-        // Ordenação de pontos flutuantes
-        if(cresc_0_decresc_1 == 0){
-            if(arrayListNumber.get(0).getClass() == Float.class){
-                Integer i, j;
-                float aux;
-
-                for ( i = 0; i < arrayListNumber.size(); i++){
-                    flutuante[i] = Float.parseFloat(arrayListNumber.get(i).toString());
-                }
-
-                for(i = 0; i < (arrayListNumber.size()); i++){ // Selection Sort
-                    for(j=i; j<arrayListNumber.size(); j++){
-                        if(flutuante[j] < flutuante[i]){
-                            aux = flutuante[i];
-                            flutuante[i] = flutuante[j];
-                            flutuante[j] = aux;
-                        }
-                    }
-                }
-
-                for ( i = 0; i < inteiro.length; i++){
-                    arrayListRetorno.add(inteiro[i]);
-                }
-            }
-        }else{
-            if(arrayListNumber.get(0).getClass() == Float.class){
-                Integer i, j;
-                float aux;
-
-                for ( i = 0; i < arrayListNumber.size(); i++){
-                    flutuante[i] = Float.parseFloat(arrayListNumber.get(i).toString());
-                }
-
-                for(i = 0; i < (arrayListNumber.size()); i++){ // Selection Sort
-                    for(j=i; j<arrayListNumber.size(); j++){
-                        if(flutuante[j] > flutuante[i]){
-                            aux = flutuante[i];
-                            flutuante[i] = flutuante[j];
-                            flutuante[j] = aux;
-                        }
-                    }
-                }
-
-                for ( i = 0; i < inteiro.length; i++){
-                    arrayListRetorno.add(inteiro[i]);
+                for (i = 0; i < inteiro.length; i++) {
+                    arrayListRetorno.add(numero[i]);
                 }
             }
         }
