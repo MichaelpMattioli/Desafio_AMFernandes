@@ -14,7 +14,7 @@ public class TratamentoJson {
         ArrayList listaCamposConteudo = new ArrayList();
         ArrayList arrayListAux = new ArrayList();
 
-        int i, j, k; // pior caso O(n^3)
+        int i, j; // pior caso O(n^2)
 
         if(subCampo == null){
             for ( i = 0; i < jsonArray.length(); i++){
