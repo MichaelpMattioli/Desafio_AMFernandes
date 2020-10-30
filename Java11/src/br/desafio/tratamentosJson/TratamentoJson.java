@@ -125,8 +125,4 @@ public class TratamentoJson {
         return jsonArrayFiltrado;
     }
 
-    public JSONArray jsonArrayImoveisFiltrados(JSONArray jsonArray, String valorDeCampo ,String campo){
-        return jsonArrayImoveisFiltrados(jsonArray, valorDeCampo, campo, null);
-    }
-
 }
