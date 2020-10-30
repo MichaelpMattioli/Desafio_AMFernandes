@@ -9,10 +9,12 @@ public class Sorts {
     public ArrayList sortNumber(int cresc_0_decresc_1, ArrayList arrayListNumber1){
 
         ArrayList arrayListNumber = arrayListNumber1;
+        ArrayList arrayListNotNumber = new ArrayList();
 
         for ( int i =0; i < arrayListNumber.size()-1; i++){
 
-            if(arrayListNumber.get(i).equals(null)){
+            if(arrayListNumber.get(i).getClass() != Integer.class){
+                arrayListNotNumber.add(arrayListNumber.get(i));
                 arrayListNumber.remove(i);
             }
         }
@@ -163,6 +165,9 @@ public class Sorts {
                 }
             }
         }
+
+        //Adiciona os valores que não são números no final do arrayListRetorno
+        arrayListNotNumber.forEach(item -> arrayListRetorno.add(item));
 
         return arrayListRetorno;
 
