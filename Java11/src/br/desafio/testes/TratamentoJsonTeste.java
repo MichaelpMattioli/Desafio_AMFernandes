@@ -23,15 +23,18 @@ public class TratamentoJsonTeste {
             }
         }
 
-        String campo = "num";
+        String campo = "bairro";
+        String subCampo = null;
 
         TratamentoJson tratamentoJson = new TratamentoJson();
 
         System.out.println(jsonArrayImoveis);
 
-        System.out.println(tratamentoJson.arrayListInfoCamposSemRepeticao(jsonArrayImoveis,campo));
+        ArrayList arrayListInfoCamposSemRepeticao = tratamentoJson.arrayListInfoCamposSemRepeticao(jsonArrayImoveis,campo,subCampo);
 
-        ArrayList arrayList = (ArrayList) tratamentoJson.arrayListInfoCamposSemRepeticao(jsonArrayImoveis,campo).get(2);
+        System.out.println(arrayListInfoCamposSemRepeticao);
+
+        ArrayList arrayList = (ArrayList) tratamentoJson.arrayListInfoCamposSemRepeticao(jsonArrayImoveis,campo,subCampo).get(arrayListInfoCamposSemRepeticao.size()-1);
 
 //        System.out.println(arrayList);
 //        System.out.println(arrayList.size());
@@ -48,11 +51,11 @@ public class TratamentoJsonTeste {
 
 
 
-        System.out.println(sorts.sortNumber(0, arrayList));
-        System.out.println(sorts.sortNumber(0,arrayList).size());
+//        System.out.println(sorts.sortNumber(0, arrayList));
+//        System.out.println(sorts.sortNumber(0,arrayList).size());
 
-        System.out.println(tratamentoJson.jsonArrayImoveisOrdenacao(jsonArrayImoveis, campo));
-        System.out.println(tratamentoJson.jsonArrayImoveisOrdenacao(jsonArrayImoveis, campo).length());
+//        System.out.println(tratamentoJson.jsonArrayImoveisOrdenacao(jsonArrayImoveis, campo));
+//        System.out.println(tratamentoJson.jsonArrayImoveisOrdenacao(jsonArrayImoveis, campo).length());
 
     }
 }
