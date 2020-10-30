@@ -8,68 +8,34 @@ public class Sorts {
 
     public ArrayList sortNumber(int cresc_0_decresc_1, ArrayList arrayListNumber1){
 
-        ArrayList arrayListNumber = arrayListNumber1;
+        ArrayList arrayListNumber = new ArrayList();
+
+        arrayListNumber1.forEach(item->{
+            arrayListNumber.add(item);
+        });
+
         ArrayList arrayListNotNumber = new ArrayList();
+
+        ArrayList arrayListRetorno = new ArrayList();
+
+        Object numero[] = new Object[arrayListNumber.size()];
+
+        //Tratamento de valores que não sejam números
+        for ( int i =0; i < arrayListNumber.size(); i++){
+
+            if(arrayListNumber.get(i).getClass() != Integer.class && arrayListNumber.get(i).getClass() != Double.class){
+                arrayListNotNumber.add(arrayListNumber.get(i));
+            }
+        }
 
         //Tratamento de valores que não sejam números
         for ( int i =0; i < arrayListNumber.size()-1; i++){
 
             if(arrayListNumber.get(i).getClass() != Integer.class && arrayListNumber.get(i).getClass() != Double.class){
-                arrayListNotNumber.add(arrayListNumber.get(i));
                 arrayListNumber.remove(i);
             }
         }
 
-
-        ArrayList arrayListRetorno = new ArrayList();
-
-        Integer inteiro[] = new Integer[arrayListNumber.size()];
-        Float flutuante[] = new Float[arrayListNumber.size()];
-        Object numero[] = new Object[arrayListNumber.size()];
-
-        // Tratamento de numeros que são tenham formato Strings
-        if(arrayListNumber.get(0).getClass() == String.class){
-
-            boolean isPossibleInteger = false;
-            boolean isPossibleFloat = false;
-
-            ArrayList arrayListAux = new ArrayList();
-
-            try{
-                arrayListNumber.forEach(number ->{
-                    if(number.equals("")){
-//                        arrayListAux.add(number);
-                    }else{
-                        Integer stringToNumber = Integer.parseInt((String) number);
-                    }
-
-                });
-                isPossibleInteger = true;
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-
-            if(isPossibleInteger == true){
-
-                arrayListNumber.forEach(number ->{
-                    if(number.equals("")){
-                    }else{
-                    int stringToNumber = Integer.parseInt((String) number.toString());
-
-                    arrayListAux.add(stringToNumber);
-                    }
-                });
-
-                arrayListNumber.clear();
-
-                arrayListAux.forEach(number ->{
-                    arrayListNumber.add(number);
-                });
-            }
-
-
-
-        }
 
         // Ordenação de inteiros
         if( cresc_0_decresc_1 == 0){
@@ -116,7 +82,7 @@ public class Sorts {
                     }
                 }
 
-                for ( i = 0; i < inteiro.length; i++){
+                for ( i = 0; i < numero.length; i++){
                     arrayListRetorno.add(numero[i]);
                 }
             }
@@ -163,7 +129,7 @@ public class Sorts {
                     }
                 }
 
-                for (i = 0; i < inteiro.length; i++) {
+                for (i = 0; i < numero.length; i++) {
                     arrayListRetorno.add(numero[i]);
                 }
             }
