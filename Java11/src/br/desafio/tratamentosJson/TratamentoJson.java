@@ -87,12 +87,14 @@ public class TratamentoJson {
 
         for ( i = 0; i < jsonArray.length(); i++){
 
+            //Verifica se existe um campo
             try{
                 jsonArray.getJSONObject(i).get(campo);
             }catch (Exception e){
                 continue;
             }
 
+            // Verifica se o valor do campo é um JSONObject
             if(jsonArray.getJSONObject(i).get(campo).getClass() == JSONObject.class){
 
                 JSONObject jsonObjectValorDeCampo = (JSONObject) jsonArray.getJSONObject(i).get(campo);
@@ -104,6 +106,7 @@ public class TratamentoJson {
                 }
             }
 
+            //Verifica se o valor do campo é uma String
             if(jsonArray.getJSONObject(i).get(campo).getClass() == String.class && subCampo == null){
                 String valorNoJson = (String) jsonArray.getJSONObject(i).get(campo);
                 if(valorDeCampo.equals(valorNoJson)) {
