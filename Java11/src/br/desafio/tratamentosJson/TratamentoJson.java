@@ -129,39 +129,4 @@ public class TratamentoJson {
         return jsonArrayImoveisFiltrados(jsonArray, valorDeCampo, campo, null);
     }
 
-    public JSONArray jsonArrayImoveisOrdenacao(JSONArray jsonArray, String campo){
-
-        JSONArray jsonArrayOrganizado = new JSONArray();
-
-        // Filtragem dos valores de campos utilizados
-        ArrayList arrayListInfoCampo = arrayListInfoCamposSemRepeticao(jsonArray, campo,null);
-        ArrayList arrayListValoresCampo = (ArrayList) arrayListInfoCampo.get(arrayListInfoCampo.size()-1);
-
-        Sorts sorts = new Sorts();
-
-        boolean seNumero = true;
-        boolean seString = false;
-
-        // Ordenação de numeros
-//        ArrayList arrayListValoresCampoOrdenado = sorts.sortNumber(0, arrayListValoresCampo);
-        ArrayList arrayListValoresCampoOrdenado = sorts.sortStringOrdemAlfabetica(arrayListValoresCampo);
-
-        arrayListValoresCampoOrdenado.forEach(valor ->{
-            if(valor == null){
-                valor = "";
-            }
-            JSONArray jsonArrayImoveisFiltrados = jsonArrayImoveisFiltrados(jsonArray, valor.toString(), campo);
-
-            jsonArrayImoveisFiltrados.forEach(jsonobject->{
-                jsonArrayOrganizado.put(jsonobject);
-            });
-
-        });
-
-        return jsonArrayOrganizado;
-
-    }
-
-
-
 }
