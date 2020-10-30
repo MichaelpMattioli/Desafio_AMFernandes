@@ -27,6 +27,12 @@ public class Sorts {
 
         Object numero[] = new Object[arrayListNumber.size()];
 
+        try{
+            arrayListNumber.get(0);
+        }catch (Exception e){
+            return arrayListRetorno;
+        }
+
         // Ordenação de inteiros
         if( cresc_0_decresc_1 == 0){
             if(arrayListNumber.get(0).getClass() != String.class){
@@ -75,7 +81,9 @@ public class Sorts {
                 for ( i = 0; i < numero.length; i++){
                     arrayListRetorno.add(numero[i]);
                 }
+
             }
+
         }else{
             if(arrayListNumber.get(0).getClass() != String.class) {
                 int i, j;
@@ -143,7 +151,17 @@ public class Sorts {
 
         // Transforma o array em um vetor de string
         for ( int i = 0; i < arrayListString.size(); i++){
-            stringValores[i] = (String) arrayListString.get(i);
+
+            String valorDeCampoString = (String) arrayListString.get(i);
+
+            //Tratamento de espaço no primeiro indice da String
+            Character primeiroCaracter = valorDeCampoString.charAt(0);
+            if( primeiroCaracter.equals(' ')){
+                StringBuilder stringBuilder = new StringBuilder(valorDeCampoString);
+                valorDeCampoString = stringBuilder.deleteCharAt(0).toString();
+            }
+
+            stringValores[i] = valorDeCampoString;
         }
 
         //Ordenação
