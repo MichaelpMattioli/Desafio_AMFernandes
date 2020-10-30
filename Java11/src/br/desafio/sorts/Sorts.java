@@ -183,24 +183,4 @@ public class Sorts {
         return arrayListRetorno;
 
     }
-
-//    public ArrayList sortEquals(ArrayList arrayList, int sortAlfa_1_notSortAlfa_0){
-//
-//        ArrayList arrayListOrdemAlfa = new ArrayList();
-//
-//        if( sortAlfa_1_notSortAlfa_0 == 1){
-//            arrayListOrdemAlfa = sortStringOrdemAlfabetica(arrayList);
-//        }
-//
-//
-//        for(int i = 0; i < arrayList.size(); i++){
-//
-//            if(!listaCamposConteudo.contains(jsonObjectAux.get(campo))){
-//                listaCamposConteudo.add(jsonObjectAux.get(campo));
-//            }
-//
-//        }
-//
-//
-//    }
 }
