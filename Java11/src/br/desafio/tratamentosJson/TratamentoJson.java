@@ -12,8 +12,9 @@ public class TratamentoJson {
 
         ArrayList listaCampos = new ArrayList();
         ArrayList listaCamposConteudo = new ArrayList();
+        ArrayList arrayListAux = new ArrayList();
 
-        int i, j;
+        int i, j, k; // pior caso O(n^3)
 
         if(subCampo == null){
             for ( i = 0; i < jsonArray.length(); i++){
@@ -39,16 +40,39 @@ public class TratamentoJson {
                     }
                 }
             }
+        }else{
+
+            for ( i = 0; i < jsonArray.length(); i++){
+
+                //Verifica se existe um campo
+                try{
+                    jsonArray.getJSONObject(i).get(campo);
+                }catch (Exception e){
+                    continue;
+                }
+
+                JSONObject jsonObjectAux = (JSONObject) jsonArray.getJSONObject(i).get(campo);
+
+                for( j = 0; j < jsonObjectAux.length(); j++){
+
+                    if(!listaCamposConteudo.contains(jsonObjectAux.get(subCampo))) {
+                        listaCamposConteudo.add(jsonObjectAux.get(subCampo));
+                    }
+                }
+            }
+
         }
 
 
 
         // Adciona no array as seguintes informações:
         // indice(0) = o campo utilizado
-        // indice(1) = Numero de quantos valores encontrado
-        // indice(2) = O arrayList contendo os valores
+        // indice(1) = o subCampo utilizado
+        // indice(2) = Numero de quantos valores encontrado
+        // indice(3) = O arrayList contendo os valores
 
         listaCampos.add(campo); // Adicion
+        listaCampos.add(subCampo);
         listaCampos.add(listaCamposConteudo.size());
         listaCampos.add(listaCamposConteudo);
 
@@ -61,7 +85,7 @@ public class TratamentoJson {
 
         // Filtragem dos valores de campos utilizados
         ArrayList arrayListInfoCampo = arrayListInfoCamposSemRepeticao(jsonArray, campo,null);
-        ArrayList arrayListValoresCampo = (ArrayList) arrayListInfoCampo.get(2);
+        ArrayList arrayListValoresCampo = (ArrayList) arrayListInfoCampo.get(arrayListInfoCampo.size()-1);
 
         Sorts sorts = new Sorts();
 
