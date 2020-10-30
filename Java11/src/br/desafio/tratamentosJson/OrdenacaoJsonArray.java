@@ -65,4 +65,31 @@ public class OrdenacaoJsonArray {
 
         return jsonArrayRetorno;
     }
+
+    public JSONArray jsonArraySortCamposNumberRange(Double valorMin, Double valorMax,int cresc_0_decres_1, String campo, String subCampo){
+
+        JSONArray jsonArrayRetorno = new JSONArray();
+
+        JSONArray jsonArrayNumerosOrdenados = jsonArraySortCamposNumber(cresc_0_decres_1, campo, subCampo);
+
+        ArrayList arrayListValorCampoInfo = tratamentoJson.arrayListInfoCamposSemRepeticao(jsonArrayNumerosOrdenados, campo, subCampo);
+
+        ArrayList arrayListValorCampoFiltrado = new ArrayList();
+
+        arrayListValorCampoInfo.forEach(valor -> {
+            if ( (Double) valor >= valorMin &&  (Double) valor <= valorMax){
+                arrayListValorCampoFiltrado.add(valor);
+            }
+        });
+
+        arrayListValorCampoFiltrado.forEach(cidade -> {
+            JSONArray jsonArrayFiltrado = tratamentoJson.jsonArrayImoveisFiltrados(jsonArrayImoveis, cidade.toString(), campo, subCampo );
+
+            jsonArrayFiltrado.forEach(jsonObject ->{
+                jsonArrayRetorno.put(jsonObject);
+            });
+        });
+
+        return jsonArrayRetorno;
+    }
 }
