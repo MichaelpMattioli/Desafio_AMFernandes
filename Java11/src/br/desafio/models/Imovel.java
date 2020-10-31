@@ -6,25 +6,25 @@ public class Imovel {
 
     private String cidade;
     private String bairro;
-    private Integer num;
+    private String num;
     private JSONObject planta;
     private JSONObject location;
     private String nome;
     private String fachada;
-    private Integer cep;
+    private String cep;
     private String rua;
 
     // informações da planta
-    private Float preco;
+    private Double preco;
     private Integer vagas;
     private Integer dormitorios;
-    private Float metragem;
+    private Double metragem;
 
     // informações da localização
-    private Float _long;
-    private Float _lat;
+    private Double _long;
+    private Double _lat;
 
-    public Imovel(String cidade, String bairro, Integer num, JSONObject planta, JSONObject location, String nome, String fachada, Integer cep, String rua, Float preco, Integer vagas, Integer dormitorios, Float metragem, Float _long, Float _lat) {
+    public Imovel(String cidade, String bairro, String num, JSONObject planta, JSONObject location, String nome, String fachada, String cep, String rua, Double preco, Integer vagas, Integer dormitorios, Double metragem, Double _long, Double _lat) {
         this.cidade = cidade;
         this.bairro = bairro;
         this.num = num;
@@ -50,7 +50,7 @@ public class Imovel {
         return bairro;
     }
 
-    public Integer getNum() {
+    public String getNum() {
         return num;
     }
 
@@ -70,7 +70,7 @@ public class Imovel {
         return fachada;
     }
 
-    public Integer getCep() {
+    public String getCep() {
         return cep;
     }
 
@@ -78,7 +78,7 @@ public class Imovel {
         return rua;
     }
 
-    public Float getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
@@ -90,15 +90,15 @@ public class Imovel {
         return dormitorios;
     }
 
-    public Float getMetragem() {
+    public Double getMetragem() {
         return metragem;
     }
 
-    public Float get_long() {
+    public Double get_long() {
         return _long;
     }
 
-    public Float get_lat() {
+    public Double get_lat() {
         return _lat;
     }
 
@@ -107,12 +107,12 @@ public class Imovel {
         return "Imovel{" +
                 "cidade='" + cidade + '\'' +
                 ", bairro='" + bairro + '\'' +
-                ", num=" + num +
+                ", num='" + num + '\'' +
                 ", planta=" + planta +
                 ", location=" + location +
                 ", nome='" + nome + '\'' +
                 ", fachada='" + fachada + '\'' +
-                ", cep=" + cep +
+                ", cep='" + cep + '\'' +
                 ", rua='" + rua + '\'' +
                 ", preco=" + preco +
                 ", vagas=" + vagas +
