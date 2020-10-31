@@ -1,5 +1,6 @@
 package br.desafio.models.tratamentosJson;
 
+
 import br.desafio.models.sorts.Sorts;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -10,6 +11,7 @@ public class OrdenacaoJsonArray {
 
 
     InfoCamposJsonArray infoCamposJsonArray = new InfoCamposJsonArray();
+
     Sorts sorts = new Sorts();
 
 
