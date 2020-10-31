@@ -1,6 +1,6 @@
 package br.desafio.testes;
 
-import br.desafio.API.ImobiliariaAPI;
+import br.desafio.ImobiliariaAPI;
 import br.desafio.models.tratamentosJson.OrdenacaoJsonArray;
 import org.json.JSONArray;
 

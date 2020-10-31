@@ -1,6 +1,6 @@
 //package br.desafio.testes;
 //
-//import br.desafio.API.ImobiliariaAPI;
+//import br.desafio.ImobiliariaAPI;
 //import br.desafio.dao.ImovelDAO;
 //import br.desafio.models.Imovel;
 //import org.json.JSONArray;

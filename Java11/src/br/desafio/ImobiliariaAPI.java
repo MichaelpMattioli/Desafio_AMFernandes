@@ -1,7 +1,6 @@
-package br.desafio.API;
+package br.desafio;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.net.URI;
 import java.net.http.HttpClient;
