@@ -15,7 +15,7 @@ public class ListaImoveis {
         return listImovel.get(imovelAtual);
     }
 
-    public boolean switchToPreviousCard(){
+    public boolean switchToPrevious(){
         if(imovelAtual > 0){
             imovelAtual--;
             return true;
@@ -23,7 +23,7 @@ public class ListaImoveis {
         return false;
     }
 
-    public boolean switchToNextCard(){
+    public boolean switchToNext(){
         if(imovelAtual < listImovel.size() - 1){
             imovelAtual++;
             return true;
