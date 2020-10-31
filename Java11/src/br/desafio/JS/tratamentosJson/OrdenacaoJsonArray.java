@@ -1,7 +1,7 @@
 package br.desafio.JS.tratamentosJson;
 
 
-import br.desafio.models.sorts.Sorts;
+import br.desafio.sorts.Sorts;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
