@@ -2,7 +2,7 @@ package br.desafio.testes;
 
 import br.desafio.ImobiliariaAPI;
 import br.desafio.models.sorts.Sorts;
-import br.desafio.models.tratamentosJson.InfoCamposJsonArray;
+import br.desafio.JS.tratamentosJson.InfoCamposJsonArray;
 import org.json.JSONArray;
 
 import java.util.ArrayList;

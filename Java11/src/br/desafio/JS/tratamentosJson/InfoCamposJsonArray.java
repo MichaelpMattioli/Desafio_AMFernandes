@@ -1,4 +1,4 @@
-package br.desafio.models.tratamentosJson;
+package br.desafio.JS.tratamentosJson;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

@@ -1,4 +1,4 @@
-package br.desafio.models.tratamentosJson;
+package br.desafio.JS.tratamentosJson;
 
 
 import br.desafio.models.sorts.Sorts;

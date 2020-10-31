@@ -1,7 +1,7 @@
 package br.desafio.testes;
 
 import br.desafio.ImobiliariaAPI;
-import br.desafio.models.tratamentosJson.OrdenacaoJsonArray;
+import br.desafio.JS.tratamentosJson.OrdenacaoJsonArray;
 import org.json.JSONArray;
 
 public class OrdenacaoJsonArrayTeste {
