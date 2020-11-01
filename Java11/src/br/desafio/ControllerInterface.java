@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -55,6 +56,8 @@ public class ControllerInterface implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         previewPhoto();
         exibirDadosDoImovel();
+        lvImoveisAtual.getItems().clear();
+        jsonArrayImoveisAtual.forEach(item -> lvImoveisAtual.getItems().add((JSONObject) item));
     }
 
     @FXML
@@ -153,6 +156,7 @@ public class ControllerInterface implements Initializable{
 
         lvImoveisAtual.getItems().clear();
         jsonArrayImoveisAtual.forEach(item -> lvImoveisAtual.getItems().add((JSONObject) item));
+
 
 
         jsonArrayImoveisAtual = jsonArrayImoveisInicial;
