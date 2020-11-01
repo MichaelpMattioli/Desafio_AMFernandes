@@ -93,6 +93,7 @@ public class OrdenacaoJsonArray {
             });
         });
 
+
         return jsonArrayRetorno;
     }
 
@@ -107,36 +108,34 @@ public class OrdenacaoJsonArray {
             //Verifica se existe um campo
             try{
                 jsonArray.getJSONObject(i).get(campo);
-            }catch (Exception e){
-                continue;
-            }
+                // Verifica se o valor do campo é um JSONObject
+                if(jsonArray.getJSONObject(i).get(campo).getClass() == JSONObject.class){
 
-            // Verifica se o valor do campo é um JSONObject
-            if(jsonArray.getJSONObject(i).get(campo).getClass() == JSONObject.class){
-
-                JSONObject jsonObjectValorDeCampo = (JSONObject) jsonArray.getJSONObject(i).get(campo);
-
-                for( j = 0; j < jsonObjectValorDeCampo.length(); j++ ){
+                    JSONObject jsonObjectValorDeCampo = (JSONObject) jsonArray.getJSONObject(i).get(campo);
 
                     //Verifica se existe um campo
                     try{
                         jsonObjectValorDeCampo.get(subCampo);
+                        if(valorDeCampo.equals(jsonObjectValorDeCampo.get(subCampo).toString())) {
+                            jsonArrayFiltrado.put(jsonArray.getJSONObject(i));
+                        }
                     }catch (Exception e){
-                        continue;
                     }
-                    if(valorDeCampo.equals(jsonObjectValorDeCampo.get(subCampo).toString())) {
+
+
+                }
+
+                //Verifica se o valor do campo é uma String
+                if(jsonArray.getJSONObject(i).get(campo).getClass() == String.class && subCampo == null){
+                    String valorNoJson = (String) jsonArray.getJSONObject(i).get(campo);
+                    if(valorDeCampo.equals(valorNoJson)) {
                         jsonArrayFiltrado.put(jsonArray.getJSONObject(i));
                     }
                 }
+
+            }catch (Exception e){
             }
 
-            //Verifica se o valor do campo é uma String
-            if(jsonArray.getJSONObject(i).get(campo).getClass() == String.class && subCampo == null){
-                String valorNoJson = (String) jsonArray.getJSONObject(i).get(campo);
-                if(valorDeCampo.equals(valorNoJson)) {
-                    jsonArrayFiltrado.put(jsonArray.getJSONObject(i));
-                }
-            }
         }
 
         return jsonArrayFiltrado;
