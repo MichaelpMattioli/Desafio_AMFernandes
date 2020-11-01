@@ -15,20 +15,22 @@ public class ImovelJS {
 
     ImobiliariaAPI imobiliariaAPI = new ImobiliariaAPI();
 
-    JSONArray jsonArrayImoveis; // 587 imoveis
-
-    {
-        try {
-            jsonArrayImoveis = imobiliariaAPI.imoveisJsonArray();
-        } catch (Exception e) {
-            jsonArrayImoveis = new JSONArray();
-        }
-    }
+    JSONArray jsonArrayAtual = new JSONArray();
 
     public List<Imovel> imovelListInicial(){
         List<Imovel> imovelList = new ArrayList<>();
 
-        jsonArrayImoveis.forEach(jsonObject ->{
+        JSONArray jsonArrayImoveisInicial; // 587 imoveis
+
+        {
+            try {
+                jsonArrayImoveisInicial = imobiliariaAPI.imoveisJsonArray();
+            } catch (Exception e) {
+                jsonArrayImoveisInicial = new JSONArray();
+            }
+        }
+
+        jsonArrayImoveisInicial.forEach(jsonObject ->{
 
             JSONObject jsonObject1 = (JSONObject) jsonObject;
 
@@ -118,10 +120,12 @@ public class ImovelJS {
         return imovelList;
     }
 
-    public List<Imovel> imoveisListSortCamposNumberRange (Double valorMin, Double valorMax, int cresc_0_decres_1, String campo, String subCampo){
+    public List<Imovel> imoveisListSortCamposNumberRange (JSONArray jsonArrayImoveis, Double valorMin, Double valorMax, int cresc_0_decres_1, String campo, String subCampo){
         List<Imovel> imovelList = new ArrayList<>();
 
         JSONArray jsonArray = ordenacaoJsonArray.jsonArraySortCamposNumberRange(jsonArrayImoveis, valorMin, valorMax, cresc_0_decres_1, campo, subCampo);
+
+        jsonArrayAtual = jsonArray;
 
         jsonArray.forEach(jsonObject ->{
 
@@ -212,5 +216,7 @@ public class ImovelJS {
         return imovelList;
 
     }
+
+    public JSONArray getJsonArrayImoveis () { return jsonArrayAtual;}
 
 }
