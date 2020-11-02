@@ -1,8 +1,10 @@
 package br.desafio;
 
 import br.desafio.JS.ImovelJS;
+import br.desafio.JS.tratamentosJson.InfoCamposJsonArray;
 import br.desafio.models.Imovel;
 import br.desafio.models.ListaImoveis;
+import br.desafio.sorts.Sorts;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -15,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -44,10 +47,13 @@ public class ControllerInterface implements Initializable{
     private ListView<JSONObject> lvImoveisAtual;
 
     @FXML
+    private ListView<String> lvCidade,lvBairro;
+
+    @FXML
     private TextField txtPrecoMinValor, txtPrecoMaxValor, txtMetragemMinValor, txtMetragemMaxValor, txtVagasMinValor, txtVagasMaxValor, txtDormsMinValor, txtDormsMaxValor;
 
     @FXML
-    private Label lblIdNome, lblIdPreco, lblIdDorms, lblIdVagas, lblIdMetragem, lblIdRua, lblIdNum, lblIdBairro, lblIdCidade, lblIdCep, lblTotalPesquisa , lblIndiceAtual;
+    private Label lblIdNome, lblIdPreco, lblIdDorms, lblIdVagas, lblIdMetragem, lblIdRua, lblIdNum, lblIdBairro, lblIdCidade, lblIdCep, lblTotalPesquisa , lblIndiceAtual, lblCidade, lblBairro;
 
     @FXML
     private ImageView imgFachada;
@@ -56,8 +62,9 @@ public class ControllerInterface implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
         previewPhoto();
         exibirDadosDoImovel();
-        lvImoveisAtual.getItems().clear();
-        jsonArrayImoveisAtual.forEach(item -> lvImoveisAtual.getItems().add((JSONObject) item));
+        exibirLVdeImoveis();
+        exibirLVCidade();
+        exibirLVBairro();
     }
 
     @FXML
@@ -122,6 +129,8 @@ public class ControllerInterface implements Initializable{
         }
 
         previewPhoto();
+        exibirLVCidade();
+        exibirLVBairro();
     }
 
     @FXML
@@ -154,10 +163,7 @@ public class ControllerInterface implements Initializable{
         filtraImoveisSortRangePreco(jsonArrayImoveisAtual);
         filtraImoveisSortRangeDorms(jsonArrayImoveisAtual);
 
-        lvImoveisAtual.getItems().clear();
-        jsonArrayImoveisAtual.forEach(item -> lvImoveisAtual.getItems().add((JSONObject) item));
-
-
+        exibirLVdeImoveis();
 
         jsonArrayImoveisAtual = jsonArrayImoveisInicial;
 
@@ -472,6 +478,51 @@ public class ControllerInterface implements Initializable{
         jsonArrayImoveisAtual = imovelJS.getJsonArrayImoveis();
 
         exibirDadosDoImovel();
+
+    }
+
+    public void exibirLVdeImoveis(){
+        lvImoveisAtual.getItems().clear();
+        jsonArrayImoveisAtual.forEach(item -> lvImoveisAtual.getItems().add((JSONObject) item));
+    }
+
+    public void exibirLVCidade(){
+        InfoCamposJsonArray infoCamposJsonArray = new InfoCamposJsonArray();
+        Sorts sorts = new Sorts();
+
+        ArrayList arrayList = infoCamposJsonArray.arrayListInfoCamposSemRepeticao(jsonArrayImoveisAtual, "cidade", null);
+
+        ArrayList cidadesExistentes = (ArrayList) arrayList.get(arrayList.size()-1);
+
+        ArrayList cidadesExistentesOrganizadas = sorts.sortStringOrdemAlfabetica(cidadesExistentes);
+
+        lvCidade.getItems().clear();
+        cidadesExistentesOrganizadas.forEach(cidade -> lvCidade.getItems().add(cidade.toString()));
+    }
+
+    public void exibirLVBairro(){
+        InfoCamposJsonArray infoCamposJsonArray = new InfoCamposJsonArray();
+        Sorts sorts = new Sorts();
+
+        ArrayList arrayList = infoCamposJsonArray.arrayListInfoCamposSemRepeticao(jsonArrayImoveisAtual, "bairro", null);
+
+        ArrayList bairrosExistentes = (ArrayList) arrayList.get(arrayList.size()-1);
+
+        ArrayList bairrosExistentesOrganizadas = sorts.sortStringOrdemAlfabetica(bairrosExistentes);
+
+        lvBairro.getItems().clear();
+        bairrosExistentesOrganizadas.forEach(cidade -> lvBairro.getItems().add(cidade.toString()));
+    }
+
+    public void limparLblCidade(){
+        lblCidade.setText("-");
+    }
+
+    public void limparLblBairro(){
+        lblBairro.setText("-");
+    }
+
+    public void filtrarImoveisSortCidade(){
 
     }
 }
