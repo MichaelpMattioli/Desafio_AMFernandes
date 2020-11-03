@@ -8,13 +8,15 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static void main(String[] args) {
+    ControllerInterface controllerInterface = new ControllerInterface();
 
+    public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        controllerInterface.initActions();
         Parent root = FXMLLoader.load(getClass().getResource("ViewInterface.fxml"));
         primaryStage.setTitle("Desafio Estágio - AMFernantes");
         primaryStage.setScene(new Scene(root, 1038, 600));

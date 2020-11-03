@@ -5,6 +5,9 @@ import br.desafio.JS.tratamentosJson.InfoCamposJsonArray;
 import br.desafio.models.Imovel;
 import br.desafio.models.ListaImoveis;
 import br.desafio.sorts.Sorts;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -13,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -21,10 +25,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * .
+ *  * @author Michael Pedroza Mattioli Leite - michael.pmattioli@gmail.com
+ *  * @since 02/11/2020
+ *  * @version 1.0
+ */
+
 public class ControllerInterface implements Initializable{
 
-
     private ImobiliariaAPI imobiliariaAPI = new ImobiliariaAPI();
+    InfoCamposJsonArray infoCamposJsonArray = new InfoCamposJsonArray();
+    Sorts sorts = new Sorts();
 
     {
         try {
@@ -35,6 +47,7 @@ public class ControllerInterface implements Initializable{
     }
 
     private JSONArray jsonArrayImoveisInicial; // 587 imoveis
+    private  JSONArray jsonArrayImoveisAnterior = jsonArrayImoveisInicial;
     private JSONArray jsonArrayImoveisAtual = jsonArrayImoveisInicial;
 
     ImovelJS imovelJS = new ImovelJS();
@@ -47,7 +60,18 @@ public class ControllerInterface implements Initializable{
     private ListView<JSONObject> lvImoveisAtual;
 
     @FXML
-    private ListView<String> lvCidade,lvBairro;
+    private ListView<String> lvBairro,lvCidade;
+
+    ArrayList arrayListInfoCidade = infoCamposJsonArray.arrayListInfoCamposSemRepeticao(jsonArrayImoveisInicial, "cidade", null);
+    ArrayList arrayListInfoBairro = infoCamposJsonArray.arrayListInfoCamposSemRepeticao(jsonArrayImoveisInicial, "bairro", null);
+
+    private List<String> arrayListOfLVCidade = FXCollections.observableArrayList(sorts.sortStringOrdemAlfabetica( (ArrayList) arrayListInfoCidade.get(arrayListInfoCidade.size()-1)));
+    private List<String> arrayListOfLVBairro = sorts.sortStringOrdemAlfabetica((ArrayList) arrayListInfoBairro.get(arrayListInfoBairro.size()-1));
+
+    @FXML
+    ObservableList<String> data = FXCollections.observableArrayList("List index 0", "List index 1");
+    ListView<String> list = new ListView<>(data);
+
 
     @FXML
     private TextField txtPrecoMinValor, txtPrecoMaxValor, txtMetragemMinValor, txtMetragemMaxValor, txtVagasMinValor, txtVagasMaxValor, txtDormsMinValor, txtDormsMaxValor;
@@ -57,6 +81,19 @@ public class ControllerInterface implements Initializable{
 
     @FXML
     private ImageView imgFachada;
+
+    public void initActions(){
+
+        list.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if(lvCidade.getSelectionModel().getSelectedIndex() == 0){
+                    System.out.println("index 0");
+                }
+
+            }
+        });
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -129,18 +166,22 @@ public class ControllerInterface implements Initializable{
         }
 
         previewPhoto();
+
+        exibirLVdeImoveis();
         exibirLVCidade();
         exibirLVBairro();
     }
 
     @FXML
     public void proximoImovel(){
+        jsonArrayImoveisAtual = jsonArrayImoveisAnterior;
         listaImoveis.switchToNext();
         exibirDadosDoImovel();
     }
 
     @FXML
     public void AnteriorImovel(){
+        jsonArrayImoveisAtual = jsonArrayImoveisAnterior;
         listaImoveis.switchToPrevious();
         exibirDadosDoImovel();
     }
@@ -158,19 +199,22 @@ public class ControllerInterface implements Initializable{
 
     public void busca(){
 
+        if(txtPrecoMinValor.getText().trim().isBlank() && txtPrecoMaxValor.getText().trim().isBlank() && txtMetragemMinValor.getText().trim().isBlank() && txtMetragemMaxValor.getText().trim().isBlank() && txtVagasMinValor.getText().trim().isBlank() && txtVagasMaxValor.getText().trim().isBlank() && txtDormsMinValor.getText().trim().isBlank() && txtDormsMaxValor.getText().trim().isBlank() && lblCidade.getText().equals("-") && lblBairro.getText().equals("-")){
+            imovelList = imovelJS.imovelListInicial();
+            exibirDadosDoImovel();
+        }
+
         filtraImoveisSortRangeVagas(jsonArrayImoveisAtual);
         filtraImoveisSortRangeMetragem(jsonArrayImoveisAtual);
         filtraImoveisSortRangePreco(jsonArrayImoveisAtual);
         filtraImoveisSortRangeDorms(jsonArrayImoveisAtual);
+        filtrarImoveisSortCidade(jsonArrayImoveisAtual);
 
-        exibirLVdeImoveis();
-
+        jsonArrayImoveisAnterior = jsonArrayImoveisAtual;
         jsonArrayImoveisAtual = jsonArrayImoveisInicial;
 
-        if(txtPrecoMinValor.getText().trim().isBlank() && txtPrecoMaxValor.getText().trim().isBlank() && txtMetragemMinValor.getText().trim().isBlank() && txtMetragemMaxValor.getText().trim().isBlank() && txtVagasMinValor.getText().trim().isBlank() && txtVagasMaxValor.getText().trim().isBlank() && txtDormsMinValor.getText().trim().isBlank() && txtDormsMaxValor.getText().trim().isBlank()){
-            imovelList = imovelJS.imovelListInicial();
-            exibirDadosDoImovel();
-        }
+        System.out.println(lvCidade.getItems());
+
     }
 
     public void filtraImoveisSortRangePreco(JSONArray jsonArray){
@@ -522,7 +566,25 @@ public class ControllerInterface implements Initializable{
         lblBairro.setText("-");
     }
 
-    public void filtrarImoveisSortCidade(){
+    public void filtrarImoveisSortCidade(JSONArray jsonArray){
+
+        String cidadeAtual = lblCidade.getText();
+
+        if(cidadeAtual.equals("-")){
+            return;
+        }
+
+
+        arrayListOfLVCidade = sorts.sortStringOrdemAlfabetica(infoCamposJsonArray.arrayListInfoCamposSemRepeticao(jsonArray, "cidade", null));
+
+
+        imovelList = imovelJS.imoveisListSortAlfabetic(jsonArray, "cidade", cidadeAtual);
+
+        listaImoveis = new ListaImoveis(imovelList);
+
+        jsonArrayImoveisAtual = imovelJS.getJsonArrayImoveis();
+
+        exibirDadosDoImovel();
 
     }
 }

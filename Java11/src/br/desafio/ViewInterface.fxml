@@ -95,7 +95,7 @@
                         <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="62.0" prefWidth="281.0">
                            <children>
                               <Label prefHeight="26.0" prefWidth="105.0" text="Cidade:" />
-                              <Label fx:id="lblCidade" alignment="CENTER" prefHeight="17.0" prefWidth="207.0" text="0" />
+                              <Label fx:id="lblCidade" alignment="CENTER" prefHeight="17.0" prefWidth="207.0" text="-" />
                               <Button mnemonicParsing="false" onAction="#limparLblCidade" prefHeight="25.0" prefWidth="117.0" text="Limpar" />
                            </children>
                         </HBox>
@@ -103,7 +103,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="281.0">
                            <children>
                               <Label prefHeight="26.0" prefWidth="56.0" text="Bairro:" />
-                              <Label fx:id="lblBairro" alignment="CENTER" prefHeight="17.0" prefWidth="160.0" text="0" />
+                              <Label fx:id="lblBairro" alignment="CENTER" prefHeight="17.0" prefWidth="160.0" text="-" />
                               <Button mnemonicParsing="false" onAction="#limparLblBairro" prefHeight="25.0" prefWidth="66.0" text="Limpar" />
                            </children>
                         </HBox>
