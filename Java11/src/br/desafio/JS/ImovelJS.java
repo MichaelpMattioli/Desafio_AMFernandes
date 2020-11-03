@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe responsável por transformar um JSONArray em uma lista de imoveis (tipo List<Imovel>), ou criar um imóvel (tipo Imovel) a partir de um JSONObject.
+ * Classe responsável por transformar um JSONArray em uma lista de imoveis (tipo List de Imovel), ou criar um imóvel (tipo Imovel) a partir de um JSONObject.
  *  * @author Michael Pedroza Mattioli Leite - michael.pmattioli@gmail.com
  *  * @since 02/11/2020
  *  * @version 1.0
@@ -49,14 +49,14 @@ public class ImovelJS {
     }
 
     /**
-     * * Método responsável por criar uma lista de imoveis ordenado em ordem numérica. A partir dos valores informados, ele transforma um JSONArray em uma lista de imoveis (tipo List<Imovel>) ordenados em ordem numérica, crescente ou decrescente, a partir de uma faixa de valor específicada.(IMPORTANTE!) Restrito apenas para o modelo informado no desafio.
-     * @param jsonArrayImoveis JSONArray que será transformado em uma lista de imoveis ordenados (tipo List<Imovel>).
+     * * Método responsável por criar uma lista de imoveis ordenado em ordem numérica. A partir dos valores informados, ele transforma um JSONArray em uma lista de imoveis (tipo List de Imovel) ordenados em ordem numérica, crescente ou decrescente, a partir de uma faixa de valor específicada.(IMPORTANTE!) Restrito apenas para o modelo informado no desafio.
+     * @param jsonArrayImoveis JSONArray que será transformado em uma lista de imoveis ordenados (tipo List de Imovel).
      * @param valorMin Double do valor mínimo da faixa.
      * @param valorMax Double do valor máximo da faixa.
      * @param cresc_0_decres_1 Integer que deve ser informado 0 (crescente) ou 1 (decrescente).
      * @param campo String que representa o campo que queira ordenar em ordem numérica.
      * @param subCampo String que representa o sub campo que queira ordenar. Informar nulo caso nao apresente.
-     * @return Retorna uma lista de imoveis (tipo List<Imovel>).
+     * @return Retorna uma lista de imoveis (tipo List de Imovel).
      */
 
     public List<Imovel> imoveisListSortCamposNumberRange (JSONArray jsonArrayImoveis, Double valorMin, Double valorMax, int cresc_0_decres_1, String campo, String subCampo){
@@ -76,11 +76,11 @@ public class ImovelJS {
     }
 
     /**
-     * Método responsável por criar uma lista de imoveis filtrado a partir de um nome específico. A partir dos valores informados, ele transforma um JSONArray em uma lista de imoveis (tipo List<Imovel>) filtrado.
-     * @param jsonArrayImoveis JSONArray que será transformado em uma lista de imoveis ordenados (tipo List<Imovel>).
+     * Método responsável por criar uma lista de imoveis filtrado a partir de um nome específico. A partir dos valores informados, ele transforma um JSONArray em uma lista de imoveis (tipo List de Imovel) filtrado.
+     * @param jsonArrayImoveis JSONArray que será transformado em uma lista de imoveis ordenados (tipo List de Imovel).
      * @param campo String que representa o campo que queira ordenar em ordem alfabética.
      * @param valorDeCampo String que representa o valor específico do campo a ser filtrado.
-     * @return Retorna uma lista de imoveis (tipo List<Imovel>).
+     * @return Retorna uma lista de imoveis (tipo List de Imovel).
      */
 
     public List<Imovel> imoveisListSortAlfabetic (JSONArray jsonArrayImoveis,String campo, String valorDeCampo){
