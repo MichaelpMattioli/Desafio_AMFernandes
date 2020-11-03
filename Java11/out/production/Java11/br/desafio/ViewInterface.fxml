@@ -99,7 +99,7 @@
                               <Button mnemonicParsing="false" onAction="#limparLblCidade" prefHeight="25.0" prefWidth="117.0" text="Limpar" />
                            </children>
                         </HBox>
-                        <ListView fx:id="lvCidade" prefHeight="79.0" prefWidth="281.0" />
+                        <ListView fx:id="lvCidade" onMouseClicked="#setLblCidade" prefHeight="79.0" prefWidth="281.0" />
                         <HBox alignment="CENTER_LEFT" prefHeight="62.0" prefWidth="281.0">
                            <children>
                               <Label prefHeight="26.0" prefWidth="56.0" text="Bairro:" />
@@ -107,7 +107,7 @@
                               <Button mnemonicParsing="false" onAction="#limparLblBairro" prefHeight="25.0" prefWidth="66.0" text="Limpar" />
                            </children>
                         </HBox>
-                        <ListView fx:id="lvBairro" prefHeight="157.0" prefWidth="281.0" />
+                        <ListView fx:id="lvBairro" onMouseClicked="#setLblBairro" prefHeight="157.0" prefWidth="281.0" />
                      </children></VBox>
                </children>
                <padding>

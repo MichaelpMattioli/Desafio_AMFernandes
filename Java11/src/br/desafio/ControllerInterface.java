@@ -5,9 +5,6 @@ import br.desafio.JS.tratamentosJson.InfoCamposJsonArray;
 import br.desafio.models.Imovel;
 import br.desafio.models.ListaImoveis;
 import br.desafio.sorts.Sorts;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -15,8 +12,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -26,7 +21,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * .
+ * Classe responsável por controlar a interface, ela irá realizará os comando quando o usuario do programa interagir com a interface gráfica.
  *  * @author Michael Pedroza Mattioli Leite - michael.pmattioli@gmail.com
  *  * @since 02/11/2020
  *  * @version 1.0
@@ -62,17 +57,6 @@ public class ControllerInterface implements Initializable{
     @FXML
     private ListView<String> lvBairro,lvCidade;
 
-    ArrayList arrayListInfoCidade = infoCamposJsonArray.arrayListInfoCamposSemRepeticao(jsonArrayImoveisInicial, "cidade", null);
-    ArrayList arrayListInfoBairro = infoCamposJsonArray.arrayListInfoCamposSemRepeticao(jsonArrayImoveisInicial, "bairro", null);
-
-    private List<String> arrayListOfLVCidade = FXCollections.observableArrayList(sorts.sortStringOrdemAlfabetica( (ArrayList) arrayListInfoCidade.get(arrayListInfoCidade.size()-1)));
-    private List<String> arrayListOfLVBairro = sorts.sortStringOrdemAlfabetica((ArrayList) arrayListInfoBairro.get(arrayListInfoBairro.size()-1));
-
-    @FXML
-    ObservableList<String> data = FXCollections.observableArrayList("List index 0", "List index 1");
-    ListView<String> list = new ListView<>(data);
-
-
     @FXML
     private TextField txtPrecoMinValor, txtPrecoMaxValor, txtMetragemMinValor, txtMetragemMaxValor, txtVagasMinValor, txtVagasMaxValor, txtDormsMinValor, txtDormsMaxValor;
 
@@ -81,19 +65,6 @@ public class ControllerInterface implements Initializable{
 
     @FXML
     private ImageView imgFachada;
-
-    public void initActions(){
-
-        list.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                if(lvCidade.getSelectionModel().getSelectedIndex() == 0){
-                    System.out.println("index 0");
-                }
-
-            }
-        });
-    }
 
     /**
      * Método responsável por iniciar as informações no programa.
@@ -232,6 +203,7 @@ public class ControllerInterface implements Initializable{
         filtraImoveisSortRangePreco(jsonArrayImoveisAtual);
         filtraImoveisSortRangeDorms(jsonArrayImoveisAtual);
         filtrarImoveisSortCidade(jsonArrayImoveisAtual);
+        filtrarImoveisSortBairro(jsonArrayImoveisAtual);
 
         jsonArrayImoveisAnterior = jsonArrayImoveisAtual;
         jsonArrayImoveisAtual = jsonArrayImoveisInicial;
@@ -629,6 +601,11 @@ public class ControllerInterface implements Initializable{
         lblBairro.setText("-");
     }
 
+    /**
+     * Método responsável por filtrar os imoveis por Cidade
+     * @param jsonArray o JSONArray atualizado para que consiga filtrar varias vezes de modos diferentes.
+     */
+
     public void filtrarImoveisSortCidade(JSONArray jsonArray){
 
         String cidadeAtual = lblCidade.getText();
@@ -636,9 +613,6 @@ public class ControllerInterface implements Initializable{
         if(cidadeAtual.equals("-")){
             return;
         }
-
-
-        arrayListOfLVCidade = sorts.sortStringOrdemAlfabetica(infoCamposJsonArray.arrayListInfoCamposSemRepeticao(jsonArray, "cidade", null));
 
 
         imovelList = imovelJS.imoveisListSortAlfabetic(jsonArray, "cidade", cidadeAtual);
@@ -649,5 +623,58 @@ public class ControllerInterface implements Initializable{
 
         exibirDadosDoImovel();
 
+    }
+
+    /**
+     * Método responsável por filtrar os imoveis por bairro
+     * @param jsonArray o JSONArray atualizado para que consiga filtrar varias vezes de modos diferentes.
+     */
+
+    public void filtrarImoveisSortBairro(JSONArray jsonArray){
+
+        String bairroAtual = lblBairro.getText();
+
+        if(bairroAtual.equals("-")){
+            return;
+        }
+
+
+        imovelList = imovelJS.imoveisListSortAlfabetic(jsonArray, "bairro", bairroAtual);
+
+        listaImoveis = new ListaImoveis(imovelList);
+
+        jsonArrayImoveisAtual = imovelJS.getJsonArrayImoveis();
+
+        exibirDadosDoImovel();
+
+    }
+
+    /**
+     * Método responsável por pegar o valor que está na listView e setar no label da Cidade, fazendo com que possa ser filtrado pelo label.
+     */
+
+    public void setLblCidade(){
+
+        String cidadeAux1 = lvCidade.getSelectionModel().getSelectedItems().toString();
+
+        String cidadeAux2 = cidadeAux1.replace("[", "");
+        String cidade = cidadeAux2.replace("]", "");
+
+        lblCidade.setText(cidade);
+
+    }
+
+    /**
+     * Método responsável por pegar o valor que está na listView e setar no label do bairro, fazendo com que possa ser filtrado pelo label.
+     */
+
+    public void setLblBairro(){
+
+        String bairroAux1 = lvBairro.getSelectionModel().getSelectedItems().toString();
+
+        String bairroAux2 = bairroAux1.replace("[", "");
+        String bairro = bairroAux2.replace("]", "");
+
+        lblBairro.setText(bairro);
     }
 }
