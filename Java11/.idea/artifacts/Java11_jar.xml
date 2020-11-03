@@ -3,14 +3,14 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Java11_jar</output-path>
     <root id="archive" name="Java11.jar">
       <element id="module-output" name="Java11" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../lib/javafx-sdk-11.0.2/lib/javafx-swt.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../lib/javafx-sdk-11.0.2/lib/javafx.base.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../lib/javafx-sdk-11.0.2/lib/javafx.controls.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../lib/javafx-sdk-11.0.2/lib/javafx.fxml.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../lib/javafx-sdk-11.0.2/lib/javafx.graphics.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../lib/javafx-sdk-11.0.2/lib/javafx.media.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../lib/javafx-sdk-11.0.2/lib/javafx.swing.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/../../../lib/javafx-sdk-11.0.2/lib/javafx.web.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/bibliotecas_auxiliares/JavaFX_11/lib/javafx-swt.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/bibliotecas_auxiliares/JavaFX_11/lib/javafx.web.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/bibliotecas_auxiliares/JavaFX_11/lib/javafx.base.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/bibliotecas_auxiliares/JavaFX_11/lib/javafx.fxml.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/bibliotecas_auxiliares/JavaFX_11/lib/javafx.media.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/bibliotecas_auxiliares/JavaFX_11/lib/javafx.swing.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/bibliotecas_auxiliares/JavaFX_11/lib/javafx.controls.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/bibliotecas_auxiliares/JavaFX_11/lib/javafx.graphics.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/bibliotecas_auxiliares/json-20200518.jar" path-in-jar="/" />
     </root>
   </artifact>
