@@ -2,7 +2,21 @@ package br.desafio.sorts;
 
 import java.util.ArrayList;
 
+/**
+ * Classe responsável por organizar um ArrayList que contém número ou palavras, ele organiza os números em ordem crescente ou descrescente e organiza as palavras em ordem alfabética.
+ *  * @author Michael Pedroza Mattioli Leite - michael.pmattioli@gmail.com
+ *  * @since 02/11/2020
+ *  * @version 1.0
+ */
+
 public class Sorts {
+
+    /**
+     * Método responsável por organizar um ArrayList que contenha números em ordem crescente ou descrescente
+     * @param cresc_0_decresc_1 Integer que deve ser informado 0 (crescente) ou 1 (decrescente).
+     * @param arrayListNumber1 ArrayList que será organizado.
+     * @return Retorna um ArrayList organizado.
+     */
 
     public ArrayList sortNumber(int cresc_0_decresc_1, ArrayList arrayListNumber1){
 
@@ -139,6 +153,12 @@ public class Sorts {
         return arrayListRetorno;
 
     }
+
+    /**
+     * Método responsável por organizar um ArrayList que contenha palavras em ordem alfabética.
+     * @param arrayListString ArrayList que será organizado.
+     * @return Retorna um ArrayList organizado.
+     */
 
     public ArrayList sortStringOrdemAlfabetica (ArrayList arrayListString){
 

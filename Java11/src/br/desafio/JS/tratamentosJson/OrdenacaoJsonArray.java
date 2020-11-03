@@ -7,14 +7,25 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class OrdenacaoJsonArray {
+/**
+ * Classe responsável por ordenar o Array de JSON em ordem alfabética, numérica crescente ou descrescente, ou filtrar um valor específico, especificando o campo que queira ordenar.
+ *  * @author Michael Pedroza Mattioli Leite - michael.pmattioli@gmail.com
+ *  * @since 02/11/2020
+ *  * @version 1.0
+ */
 
+public class OrdenacaoJsonArray {
 
     InfoCamposJsonArray infoCamposJsonArray = new InfoCamposJsonArray();
 
     Sorts sorts = new Sorts();
 
-
+    /**
+     * Método responsável por ordenar o Array de JSON em ordem alfabética, onde deve informar o Array de JSON, e o campo que queira organizar.
+     * @param jsonArray JSONArray que será ordenado.
+     * @param campo String que representa o campo a ser ordenado.
+     * @return JSONArray ordenado em ordem alfabética.
+     */
 
     public JSONArray jsonArraySortCamposAlfabetic(JSONArray jsonArray, String campo){
 
@@ -40,6 +51,15 @@ public class OrdenacaoJsonArray {
 
     }
 
+    /**
+     * Método responsável por ordenar o Array de JSON em ordem numérica crescente ou descrescente, onde deve informar o Array de JSON que deve ser ordenado, o campo a ser ordenado, e caso apresente um sub campo dentro de um campo, informar o sub campo a ser ordenado, caso contrário informe nulo.
+     * @param jsonArray JSONArray a ser ordenado.
+     * @param cresc_0_decres_1 Integer que deve ser informado 0 (crescente) ou 1 (decrescente).
+     * @param campo String que representa o campo que queira ordenar em ordem numérica.
+     * @param subCampo String que representa o sub campo que queira ordenar. Informar nulo caso nao apresente.
+     * @return Retorna um JSONArray ordenado em ordem numérica.
+     */
+
     public JSONArray jsonArraySortCamposNumber(JSONArray jsonArray,int cresc_0_decres_1, String campo, String subCampo){
         JSONArray jsonArrayRetorno = new JSONArray();
 
@@ -59,6 +79,17 @@ public class OrdenacaoJsonArray {
 
         return jsonArrayRetorno;
     }
+
+    /**
+     * Método responsável por ordenar o Array de JSON em ordem numérica crescente ou descrescente, a partir de uma faixa de valores informados, onde deve informar o Array de JSON que deve ser ordenado, a faixa de valor, o campo a ser ordenado, e caso apresente um sub campo dentro de um campo, informar o sub campo a ser ordenado, caso contrário informe nulo.
+     * @param jsonArray JSONArray que será ordenado.
+     * @param valorMin Double do valor mínimo da faixa.
+     * @param valorMax Double do valor máximo da faixa.
+     * @param cresc_0_decres_1 Integer que deve ser informado 0 (crescente) ou 1 (decrescente).
+     * @param campo String que representa o campo que queira ordenar em ordem numérica.
+     * @param subCampo String que representa o sub campo que queira ordenar. Informar nulo caso nao apresente.
+     * @return Retorna um JSONArray ordenado em ordem numérica.
+     */
 
     public JSONArray jsonArraySortCamposNumberRange(JSONArray jsonArray, Double valorMin, Double valorMax,int cresc_0_decres_1, String campo, String subCampo){
 
@@ -96,6 +127,15 @@ public class OrdenacaoJsonArray {
 
         return jsonArrayRetorno;
     }
+
+    /**
+     * Método responsável por filtrar o Array de JSON através de um valor específico. Deve informar o JSONArray que será filtrado, o valor do campo que queira filtrar, o campo no qual o valor esteja, e caso apresente um sub campo dentro de um campo, informar o sub campo que será filtrado, caso contrário informe nulo.
+     * @param jsonArray JSONArray que será filtrado.
+     * @param valorDeCampo String que representa o valor de campo a ser filtrado. caso o valor de campo seja numérico, transforma-lo para String.
+     * @param campo String que representa o valor de campo.
+     * @param subCampo String que representa o valor do sub campo, caso não exista, informar nulo.
+     * @return Retorna um JSONArray filtrado.
+     */
 
     public JSONArray jsonArrayImoveisFiltrados(JSONArray jsonArray, String valorDeCampo ,String campo, String subCampo){
 
