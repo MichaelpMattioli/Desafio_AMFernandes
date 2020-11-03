@@ -95,6 +95,11 @@ public class ControllerInterface implements Initializable{
         });
     }
 
+    /**
+     * Método responsável por iniciar as informações no programa.
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         previewPhoto();
@@ -104,6 +109,9 @@ public class ControllerInterface implements Initializable{
         exibirLVBairro();
     }
 
+    /**
+     * Método responsável por exibir os dados em cada campo, os dados são extraidos do imóvel que atualmente está na lista de imóveis.
+     */
     @FXML
     public void exibirDadosDoImovel(){
 
@@ -172,6 +180,9 @@ public class ControllerInterface implements Initializable{
         exibirLVBairro();
     }
 
+    /**
+     * Método que fará com que o usuario percorra pela lista de imoveis, passando para o próximo imóvel.
+     */
     @FXML
     public void proximoImovel(){
         jsonArrayImoveisAtual = jsonArrayImoveisAnterior;
@@ -179,12 +190,20 @@ public class ControllerInterface implements Initializable{
         exibirDadosDoImovel();
     }
 
+    /**
+     * Método que fará com que o usuario percorra pela lista de imoveis, passando para o imóvel anterior.
+     */
+
     @FXML
     public void AnteriorImovel(){
         jsonArrayImoveisAtual = jsonArrayImoveisAnterior;
         listaImoveis.switchToPrevious();
         exibirDadosDoImovel();
     }
+
+    /**
+     * Método que irá mostrar a fachada adquirida pela URL presente em cada imóvel.
+     */
 
     @FXML
     public void previewPhoto(){
@@ -196,6 +215,10 @@ public class ControllerInterface implements Initializable{
         }
         imgFachada.setImage(image);
     }
+
+    /**
+     * Método que inicia a busca de imoveis que compreende aos dados de filtro que o usuario digitou, atualizando o programa para aquelas especificações.
+     */
 
     public void busca(){
 
@@ -216,6 +239,11 @@ public class ControllerInterface implements Initializable{
         System.out.println(lvCidade.getItems());
 
     }
+
+    /**
+     * Método que realiza a busca de imoveis com uma faixa de preço específico.
+     * @param jsonArray JSONArray que atualmente está sendo buscado e processado.
+     */
 
     public void filtraImoveisSortRangePreco(JSONArray jsonArray){
 
@@ -292,6 +320,11 @@ public class ControllerInterface implements Initializable{
         exibirDadosDoImovel();
 
     }
+
+    /**
+     * Método que realiza a busca de imoveis com uma faixa de metragem específico.
+     * @param jsonArray JSONArray que atualmente está sendo buscado e processado.
+     */
 
     public void filtraImoveisSortRangeMetragem(JSONArray jsonArray){
 
@@ -371,6 +404,11 @@ public class ControllerInterface implements Initializable{
 
     }
 
+    /**
+     * Método que realiza a busca de imoveis com uma faixa de vagas específico.
+     * @param jsonArray JSONArray que atualmente está sendo buscado e processado.
+     */
+
     public void filtraImoveisSortRangeVagas(JSONArray jsonArray){
 
         Double minValor;
@@ -447,6 +485,11 @@ public class ControllerInterface implements Initializable{
         exibirDadosDoImovel();
 
     }
+
+    /**
+     * Método que realiza a busca de imoveis com uma faixa de dormitórios específico.
+     * @param jsonArray JSONArray que atualmente está sendo buscado e processado.
+     */
 
     public void filtraImoveisSortRangeDorms(JSONArray jsonArray){
 
@@ -525,10 +568,18 @@ public class ControllerInterface implements Initializable{
 
     }
 
+    /**
+     * Método responsável por exibir a lista de imoveis num formato JSONObject, simplismente para conferir se o processo de busca está sendo realizado.
+     */
+
     public void exibirLVdeImoveis(){
         lvImoveisAtual.getItems().clear();
         jsonArrayImoveisAtual.forEach(item -> lvImoveisAtual.getItems().add((JSONObject) item));
     }
+
+    /**
+     * Método responsável por exibir a lista de cidades que estão disponíveis na situação atual de busca do usuario.
+     */
 
     public void exibirLVCidade(){
         InfoCamposJsonArray infoCamposJsonArray = new InfoCamposJsonArray();
@@ -544,6 +595,10 @@ public class ControllerInterface implements Initializable{
         cidadesExistentesOrganizadas.forEach(cidade -> lvCidade.getItems().add(cidade.toString()));
     }
 
+    /**
+     * Método responsável por exibir a lista de bairros que estão disponíveis na situação atual de busca do usuario.
+     */
+
     public void exibirLVBairro(){
         InfoCamposJsonArray infoCamposJsonArray = new InfoCamposJsonArray();
         Sorts sorts = new Sorts();
@@ -558,9 +613,17 @@ public class ControllerInterface implements Initializable{
         bairrosExistentesOrganizadas.forEach(cidade -> lvBairro.getItems().add(cidade.toString()));
     }
 
+    /**
+     * Método responsável por limpar o campo de busca da cidade.
+     */
+
     public void limparLblCidade(){
         lblCidade.setText("-");
     }
+
+    /**
+     * Método responsável por limpar o campo de busca do bairro.
+     */
 
     public void limparLblBairro(){
         lblBairro.setText("-");
