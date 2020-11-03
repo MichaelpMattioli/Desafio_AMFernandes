@@ -198,17 +198,16 @@ public class ControllerInterface implements Initializable{
             exibirDadosDoImovel();
         }
 
+        filtrarImoveisSortCidade(jsonArrayImoveisAtual);
+        filtrarImoveisSortBairro(jsonArrayImoveisAtual);
         filtraImoveisSortRangeVagas(jsonArrayImoveisAtual);
         filtraImoveisSortRangeMetragem(jsonArrayImoveisAtual);
         filtraImoveisSortRangePreco(jsonArrayImoveisAtual);
         filtraImoveisSortRangeDorms(jsonArrayImoveisAtual);
-        filtrarImoveisSortCidade(jsonArrayImoveisAtual);
-        filtrarImoveisSortBairro(jsonArrayImoveisAtual);
+
 
         jsonArrayImoveisAnterior = jsonArrayImoveisAtual;
         jsonArrayImoveisAtual = jsonArrayImoveisInicial;
-
-        System.out.println(lvCidade.getItems());
 
     }
 
